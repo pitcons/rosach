@@ -1,0 +1,11 @@
+---
+DEBUG: True
+SECRET_KEY: hackme
+DATABASES:
+  default:
+      ENGINE: django.db.backends.mysql
+      HOST: localhost
+      NAME: rosach
+      PASSWORD: hackme
+      PORT:
+      USER: root
