@@ -22,3 +22,4 @@ django-sekizai>=0.7
 six
 PyYAML==3.11
 django-bower==5.0.4
+django-happenings==0.3.3
