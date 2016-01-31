@@ -21,3 +21,4 @@ Pillow>=2.3
 django-sekizai>=0.7
 six
 PyYAML==3.11
+django-bower==5.0.4

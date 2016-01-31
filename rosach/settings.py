@@ -77,6 +77,12 @@ STATICFILES_DIRS = (
 )
 SITE_ID = 1
 
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "djangobower.finders.BowerFinder",
+]
+
 
 TEMPLATES = [
     {
@@ -131,6 +137,8 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
     'django.contrib.messages',
+    'djangobower',
+    'happenings',
     'cms',
     'menus',
     'sekizai',
@@ -146,7 +154,7 @@ INSTALLED_APPS = (
     'djangocms_teaser',
     'djangocms_video',
     'reversion',
-    'rosach'
+    'rosach',
 )
 
 LANGUAGES = (
@@ -205,6 +213,13 @@ MIGRATION_MODULES = {
 
 }
 
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'rosach/static/')
+BOWER_INSTALLED_APPS = (
+    'bootstrap-calendar',
+)
+
+
+# override settings
 import yaml
 file = open(os.path.join(BASE_DIR, 'settings.yml'))
 for key, value in yaml.load(file).items():
