@@ -155,6 +155,7 @@ INSTALLED_APPS = (
     'djangocms_video',
     'reversion',
     'rosach',
+    'rest_framework',
 )
 
 LANGUAGES = (
@@ -215,8 +216,16 @@ MIGRATION_MODULES = {
 
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'rosach/static/')
 BOWER_INSTALLED_APPS = (
-    'bootstrap-calendar',
+    'fullcalendar',
 )
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 
 # override settings
