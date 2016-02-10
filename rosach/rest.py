@@ -33,7 +33,7 @@ router.register(r'users', UserViewSet)
 class EventSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = hm.Event
-        fields = ('start_date', 'end_date', 'all_day',
+        fields = ('id', 'start_date', 'end_date', 'all_day',
                   'repeat','end_repeat', 'title', 'description')
 
     start_date = DateTimeTzAwareField()

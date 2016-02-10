@@ -58,6 +58,9 @@ LANGUAGE_CODE = 'ru'
 TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
 USE_L10N = True
 
@@ -217,6 +220,7 @@ MIGRATION_MODULES = {
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'rosach/static/')
 BOWER_INSTALLED_APPS = (
     'fullcalendar',
+    'eonasdan-bootstrap-datetimepicker',
 )
 
 REST_FRAMEWORK = {

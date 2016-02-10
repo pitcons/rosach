@@ -1,0 +1,66 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-02-10 03:15+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: rosach/settings.py:166 rosach/settings.py:182
+msgid "ru"
+msgstr ""
+
+#: rosach/settings.py:167 rosach/settings.py:189
+msgid "en"
+msgstr ""
+
+#: rosach/templates/calendar/main.html:8
+msgid "Event"
+msgstr "Событие"
+
+#: rosach/templates/calendar/main.html:17
+msgid "Begin"
+msgstr "Начало"
+
+#: rosach/templates/calendar/main.html:29
+msgid "End"
+msgstr "Окончание"
+
+#: rosach/templates/calendar/main.html:41
+msgid "Title"
+msgstr "Событие"
+
+#: rosach/templates/calendar/main.html:48
+msgid "Repeat"
+msgstr "Повтор"
+
+#: rosach/templates/calendar/main.html:51
+msgid "no"
+msgstr "Никогда"
+
+#: rosach/templates/calendar/main.html:52
+msgid "every week"
+msgstr "Каждую неделю"
+
+#: rosach/templates/calendar/main.html:58
+msgid "End repeat"
+msgstr "Окончание повтора"
+
+#: rosach/templates/calendar/main.html:74
+msgid "Close"
+msgstr "Закрыть"
+
+#: rosach/templates/calendar/main.html:75
+msgid "Save changes"
+msgstr "Сохранить"
