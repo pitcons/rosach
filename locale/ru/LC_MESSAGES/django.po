@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-10 03:15+0300\n"
+"POT-Creation-Date: 2016-02-13 03:00+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: rosach/settings.py:166 rosach/settings.py:182
+#: rosach/settings.py:168 rosach/settings.py:184
 msgid "ru"
 msgstr ""
 
-#: rosach/settings.py:167 rosach/settings.py:189
+#: rosach/settings.py:169 rosach/settings.py:191
 msgid "en"
 msgstr ""
 
@@ -29,38 +29,54 @@ msgstr ""
 msgid "Event"
 msgstr "Событие"
 
-#: rosach/templates/calendar/main.html:17
+#: rosach/templates/calendar/main.html:19
+msgid "Place"
+msgstr "Место"
+
+#: rosach/templates/calendar/main.html:23
+msgid "Library"
+msgstr "Библиотека"
+
+#: rosach/templates/calendar/main.html:24
+msgid "Hall"
+msgstr "Зал"
+
+#: rosach/templates/calendar/main.html:31
 msgid "Begin"
 msgstr "Начало"
 
-#: rosach/templates/calendar/main.html:29
+#: rosach/templates/calendar/main.html:44
 msgid "End"
 msgstr "Окончание"
 
-#: rosach/templates/calendar/main.html:41
+#: rosach/templates/calendar/main.html:57
 msgid "Title"
 msgstr "Событие"
 
-#: rosach/templates/calendar/main.html:48
+#: rosach/templates/calendar/main.html:65
+msgid "Description"
+msgstr "Описание"
+
+#: rosach/templates/calendar/main.html:73
 msgid "Repeat"
 msgstr "Повтор"
 
-#: rosach/templates/calendar/main.html:51
+#: rosach/templates/calendar/main.html:77
 msgid "no"
 msgstr "Никогда"
 
-#: rosach/templates/calendar/main.html:52
+#: rosach/templates/calendar/main.html:78
 msgid "every week"
 msgstr "Каждую неделю"
 
-#: rosach/templates/calendar/main.html:58
+#: rosach/templates/calendar/main.html:84
 msgid "End repeat"
-msgstr "Окончание повтора"
+msgstr "Последний день повтора"
 
-#: rosach/templates/calendar/main.html:74
+#: rosach/templates/calendar/main.html:101
 msgid "Close"
 msgstr "Закрыть"
 
-#: rosach/templates/calendar/main.html:75
+#: rosach/templates/calendar/main.html:102
 msgid "Save changes"
 msgstr "Сохранить"

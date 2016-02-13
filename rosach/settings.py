@@ -56,6 +56,8 @@ WSGI_APPLICATION = 'rosach.wsgi.application'
 LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'Europe/Moscow'
+RU_DATETIME_FORMAT = '%d.%m.%Y %H:%M'
+RU_DATE_FORMAT = '%d.%m.%Y'
 
 USE_I18N = True
 LOCALE_PATHS = (
@@ -217,6 +219,8 @@ MIGRATION_MODULES = {
 
 }
 
+SESSION_COOKIE_HTTPONLY = False
+
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'rosach/static/')
 BOWER_INSTALLED_APPS = (
     'fullcalendar',
@@ -227,8 +231,13 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+        'rest_framework.permissions.AllowAny',
+        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ],
 }
 
 

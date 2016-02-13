@@ -11,17 +11,32 @@
 
 
               <form class="form-horizontal">
+                {% csrf_token %}
+                <input type="hidden" name="id" />
+                <input type="hidden" name="created_by" value="{{ request.user.id }}" />
+
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">{% trans 'Place' %}</label>
+                  <div class="col-sm-9">
+                    <input type="hidden" name="categories" />
+                    <div class="btn-group" role="group">
+                      <button name="library-place" type="button" class="btn btn-default">{% trans 'Library' %}</button>
+                      <button name="hall-place" type="button" class="btn btn-default">{% trans 'Hall' %}</button>
+                    </div>
+                  </div>
+                </div>
 
 
                 <div class="form-group">
                   <label for="start-datetime" class="col-sm-3 control-label">{% trans 'Begin' %}</label>
                   <div class="col-sm-9">
                     <div class='input-group date' id='start-datetime'>
-                      <input name="start-datetime" type='text' class="form-control" />
+                      <input name="start_date" type='text' class="form-control" />
                       <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                       </span>
                     </div>
+                    <span class="help-block"></span>
                   </div>
                 </div>
 
@@ -29,24 +44,35 @@
                   <label for="start-datetime" class="col-sm-3 control-label">{% trans 'End' %}</label>
                   <div class="col-sm-9">
                     <div class='input-group date' id='end-datetime'>
-                      <input name="end-datetime" type='text' class="form-control" />
+                      <input name="end_date" type='text' class="form-control" />
                       <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                       </span>
                     </div>
+                    <span class="help-block"></span>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="start-datetime" class="col-sm-3 control-label">{% trans 'Title' %}</label>
+                  <label for="title" class="col-sm-3 control-label">{% trans 'Title' %}</label>
                   <div class="col-sm-9">
                     <input name="title" type='text' class="form-control" />
+                    <span class="help-block"></span>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="start-datetime" class="col-sm-3 control-label">{% trans 'Repeat' %}</label>
+                  <label for="title" class="col-sm-3 control-label">{% trans 'Description' %}</label>
                   <div class="col-sm-9">
+                    <textarea rows="4" name="description" type='text' class="form-control"></textarea>
+                    <span class="help-block"></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">{% trans 'Repeat' %}</label>
+                  <div class="col-sm-9">
+                    <input type="hidden" name="repeat" />
                     <div class="btn-group" role="group">
                       <button name="no-repeat" type="button" class="btn btn-default">{% trans 'no' %}</button>
                       <button name="week-repeat" type="button" class="btn btn-default">{% trans 'every week' %}</button>
@@ -55,14 +81,15 @@
                 </div>
 
                 <div class="form-group" id="end-repeat-row">
-                  <label for="start-datetime" class="col-sm-3 control-label">{% trans 'End repeat' %}</label>
+                  <label for="end-repeat-datetime" class="col-sm-3 control-label">{% trans 'End repeat' %}</label>
                   <div class="col-sm-9">
                     <div class='input-group date' id='end-repeat-datetime'>
-                      <input name="end-repeat-datetime" type='text' class="form-control" />
+                      <input name="end_repeat" type='text' class="form-control" />
                       <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                       </span>
                     </div>
+                   <span class="help-block"></span>
                   </div>
                 </div>
 
@@ -72,10 +99,28 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Close' %}</button>
-                <button type="button" class="btn btn-primary">{% trans 'Save changes' %}</button>
+                <button type="button" class="btn btn-primary save-button">{% trans 'Save changes' %}</button>
         </div>
     </div>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-sm-6 ">
+    <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end place-sample" style="background: white; color: black">
+      <div class="fc-content"><span class="fc-time"></span> <span class="fc-title">Событие состоится в библиотеке</span></div>
+    </a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end place-sample" >
+      <div class="fc-content"><span class="fc-time"></span> <span class="fc-title">Событие состоится в зале</span></div>
+    </a>
+  </div>
+</div>
+
+<br />
 
 <div id='calendar'></div>

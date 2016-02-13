@@ -1,5 +1,5 @@
 #calendar {
-	max-width: 900px;
+/* max-width: 900px; */
 	margin: 0 auto;
 }
 
@@ -10,4 +10,12 @@ body {
 
 .timepicker {
     width: 30% !override;
+}
+
+.place-sample {
+    width: 288px;
+}
+
+#event-edit-modal .modal-dialog {
+    width: 75%;
 }

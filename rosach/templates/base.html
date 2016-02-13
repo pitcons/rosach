@@ -6,11 +6,14 @@
         <title>{% block title %}This is my new project home page{% endblock title %}</title>
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.css">
+
         <link rel="stylesheet" href="{% static 'style.css'%}">
         {% render_block "css" %}
         {% block extra_head%}{% endblock %}
     </head>
     <body>
+
         {% cms_toolbar %}
         <div class="container">
             <div class="navbar navbar-default" role="navigation">
@@ -33,7 +36,10 @@
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script src="http://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js"></script>
+
         {% render_block "js" %}
         {% include 'calendar/head.html' %}
+        <div style="display: none" id="user_login">{{ request.user }}</div>
     </body>
 </html>
