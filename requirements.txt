@@ -29,3 +29,4 @@ django-newsletter==0.6
 unicodecsv==0.14.1
 django-extensions==1.6.1
 sorl-thumbnail==12.4a1
+Unidecode==0.04.19
