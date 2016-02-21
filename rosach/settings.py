@@ -144,6 +144,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'djangobower',
     'happenings',
+    'django_extensions',
     'cms',
     'menus',
     'sekizai',
@@ -161,6 +162,7 @@ INSTALLED_APPS = (
     'reversion',
     'rosach',
     'rest_framework',
+    'newsletter',
 )
 
 LANGUAGES = (
@@ -231,8 +233,8 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
-        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        # 'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
@@ -240,6 +242,7 @@ REST_FRAMEWORK = {
     ],
 }
 
+NEWSLETTER_CONFIRM_EMAIL = False
 
 # override settings
 import yaml

@@ -16,6 +16,7 @@ body {
     width: 288px;
 }
 
-#event-edit-modal .modal-dialog {
+#event-edit-modal .modal-dialog,
+#send-email-modal .modal-dialog{
     width: 75%;
 }

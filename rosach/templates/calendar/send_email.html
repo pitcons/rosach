@@ -1,0 +1,35 @@
+{% load i18n %}
+
+<div class="modal fade" id="send-email-modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">{% trans 'Send notification email' %}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger" role="alert"></div>
+
+        <form class="form">
+          <input name="event-id" type="hidden" />
+
+          <div class="form-group">
+            <label for="email-subject" class="control-label">{% trans 'Subject:' %}</label>
+            <input id="email-subject" name="subject" type='text' class="form-control" />
+            <span class="help-block"></span>
+          </div>
+
+          <label for="email-message" class="control-label">{% trans 'Email text:' %}</label>
+          <textarea name="email-message" id="email-message"></textarea>
+        </form>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger just-delete-button pull-left">{% trans 'Just delete' %}</button>
+
+          <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Close' %}</button>
+          <button type="button" class="btn btn-danger delete-and-send-button">{% trans 'Delete and send' %}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

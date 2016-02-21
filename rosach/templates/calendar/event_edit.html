@@ -1,0 +1,107 @@
+{% load i18n %}
+<div class="modal fade" id="event-edit-modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">{% trans 'Event' %}</h4>
+            </div>
+            <div class="modal-body">
+
+
+              <form class="form-horizontal">
+                {% csrf_token %}
+                <input type="hidden" name="id" />
+                <input type="hidden" name="created_by" value="{{ request.user.id }}" />
+
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">{% trans 'Place' %}</label>
+                  <div class="col-sm-9">
+                    <input type="hidden" name="categories" />
+                    <div class="btn-group" role="group">
+                      <button name="library-place" type="button" class="btn btn-default">{% trans 'Library' %}</button>
+                      <button name="hall-place" type="button" class="btn btn-default">{% trans 'Hall' %}</button>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label for="start-datetime" class="col-sm-3 control-label">{% trans 'Begin' %}</label>
+                  <div class="col-sm-9">
+                    <div class='input-group date' id='start-datetime'>
+                      <input name="start_date" type='text' class="form-control" />
+                      <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                    </div>
+                    <span class="help-block"></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="start-datetime" class="col-sm-3 control-label">{% trans 'End' %}</label>
+                  <div class="col-sm-9">
+                    <div class='input-group date' id='end-datetime'>
+                      <input name="end_date" type='text' class="form-control" />
+                      <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                    </div>
+                    <span class="help-block"></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="title" class="col-sm-3 control-label">{% trans 'Title' %}</label>
+                  <div class="col-sm-9">
+                    <input name="title" type='text' class="form-control" />
+                    <span class="help-block"></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="title" class="col-sm-3 control-label">{% trans 'Description' %}</label>
+                  <div class="col-sm-9">
+                    <textarea rows="4" name="description" type='text' class="form-control"></textarea>
+                    <span class="help-block"></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">{% trans 'Repeat' %}</label>
+                  <div class="col-sm-9">
+                    <input type="hidden" name="repeat" />
+                    <div class="btn-group" role="group">
+                      <button name="no-repeat" type="button" class="btn btn-default">{% trans 'no' %}</button>
+                      <button name="week-repeat" type="button" class="btn btn-default">{% trans 'every week' %}</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group" id="end-repeat-row">
+                  <label for="end-repeat-datetime" class="col-sm-3 control-label">{% trans 'End repeat' %}</label>
+                  <div class="col-sm-9">
+                    <div class='input-group date' id='end-repeat-datetime'>
+                      <input name="end_repeat" type='text' class="form-control" />
+                      <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                    </div>
+                   <span class="help-block"></span>
+                  </div>
+                </div>
+
+
+              </form>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger delete-button pull-left">{% trans 'Delete' %}</button>
+
+              <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Close' %}</button>
+              <button type="button" class="btn btn-primary save-button">{% trans 'Save changes' %}</button>
+            </div>
+    </div>
+  </div>
+</div>

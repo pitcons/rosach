@@ -1,12 +1,23 @@
 # -*- coding: utf-8 -*-
+import hashlib
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.conf.urls import url, include
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
+from django.db import IntegrityError
+from unidecode import unidecode
 import happenings.models as hm
+import newsletter.models as nm
+from django.utils.translation import ugettext as _
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authentication import SessionAuthentication
 from rest_framework import routers, serializers, viewsets
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
 
 router = routers.DefaultRouter()
 
@@ -25,25 +36,8 @@ class DateTimeTzAwareField(serializers.DateTimeField):
         return super(DateTimeTzAwareField, self).to_representation(value)
 
 
-# Serializers define the API representation.
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-
-    class Meta:
-        model = User
-        fields = ('url', 'username', 'email', 'is_staff')
-
-
-# ViewSets define the view behavior.
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-router.register(r'users', UserViewSet)
-
-
-# Serializers define the API representation.
-# class EventSerializer(serializers.HyperlinkedModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = hm.Event
         fields = ('id', 'start_date', 'end_date', 'all_day',
@@ -82,3 +76,65 @@ class EventViewSet(viewsets.ModelViewSet):
 
 # Routers provide an easy way of automatically determining the URL conf.
 router.register(r'events', EventViewSet)
+
+class SubscriptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = nm.Subscription
+        fields = ('email_field', 'newsletter', 'subscribed')
+
+    email_field = serializers.EmailField(required=True)
+    newsletter = serializers.PrimaryKeyRelatedField(
+        queryset = nm.Newsletter.objects.all(),
+        many=False,
+        read_only=False
+    )
+
+
+class Subscription(APIView):
+    permission_classes = [AllowAny, ]
+
+    def put(self, request, pk=None, format=None):
+        data = request.data.copy()
+        data['newsletter'] = nm.Newsletter.objects.all()[0].id
+        data['subscribed'] = True
+
+        serializer = SubscriptionSerializer(data=data)
+        if nm.Subscription.objects.filter(newsletter_id=data['newsletter'],
+                                          email_field=data['email_field'])\
+                                  .exists():
+            return Response({'email_field': [_('Already subscribed')]},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class SendMessage(APIView):
+    permission_classes = [IsAuthenticated, ]
+
+    def post(self, request, pk=None, format=None):
+        data = request.data.copy()
+
+        try:
+            slug = hashlib.md5(data['subject'].encode('utf-8')).hexdigest()
+            message = nm.Message(title=data['subject'],
+                                 slug=slug)
+            # message = nm.Message(title=data['subject'],
+            #                      slug=slugify(unidecode(data['subject'])))
+            message.save()
+        except IntegrityError:
+            return Response({'message': [_('That subject is alredy sended')]},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        article = nm.Article(sortorder=0,
+                             title=data['subject'],
+                             text=data['email-message'],
+                             post=message)
+        article.save()
+        submission = nm.Submission.from_message(message)
+
+        return Response({}, status=status.HTTP_201_CREATED)

@@ -13,13 +13,17 @@ admin.autodiscover()
 from .rest import *
 
 urlpatterns = i18n_patterns('',
-    url(r'^admin/', include(admin.site.urls)),  # NOQA
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^newsletter/', include('newsletter.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
         {'sitemaps': {'cmspages': CMSSitemap}}),
     url(r'^select2/', include('django_select2.urls')),
     url(r'^ecalendar/', include('happenings.urls', namespace='calendar')),
+    url(r'^api/send_message/$', SendMessage.as_view()),
+    url(r'^api/subscriptions/$', Subscription.as_view()),
     url(r'^api/', include(router.urls)),
+
     url(r'^', include('cms.urls')),
 )
 

@@ -1,11 +1,57 @@
+function refillCalendar() {
+    $.get(events_url).then(function(data){
+        var events = [];
+        $.each(data, function(i, event) {
+            var begin;
+            var end;
+
+            if (event.repeat == "WEEKDAY" && event.end_repeat) {
+                end = moment(event.end_repeat);
+            } else {
+                end = moment(event.start_date);
+            }
+
+            var current = moment(event.start_date);
+            var current_end = moment(event.end_date);
+            current.locale(dateLang);
+            current_end.locale(dateLang);
+            end.locale(dateLang);
+
+            while(moment(current).startOf('day').unix() <= moment(end).startOf('day').unix()) {
+                var place = libraryId;
+                if (event.categories.length != 0 && event.categories[0] == hallId) {
+                    place = hallId;
+                }
+
+                events.push(
+                    {'id': event.id,
+                     'title': event.title,
+                     'description': event.description,
+                     'start': current.format(),
+                     'end': current_end.format(),
+                     'source_start': event.start_date,
+                     'source_end': event.end_date,
+                     'repeat': event.repeat,
+                     'end_repeat': event.end_repeat,
+                     'created_by': event.created_by,
+                     'place': place,
+                    }
+                );
+
+                current.add(7, 'day');
+                current_end.add(7, 'day');
+            }
+        });
+
+        $('#calendar').fullCalendar('removeEvents');
+        $('#calendar').fullCalendar('addEventSource', events);
+        $('#calendar').fullCalendar('refetchEvents');
+    });
+}
+
+
 $(document).ready(function() {
-    var hallId = 1;
-    var libraryId = 2;
-    var events_url = '/ru/api/events/?format=json';
-    var put_event = '/ru/api/events/';
-    var dateTimeFormat = 'DD.MM.YYYY H:mm';
-    var dateFormat = 'DD.MM.YYYY';
-    var dateLang = 'ru';
+
     var btnNoRepeat = $('#event-edit-modal button[name=no-repeat]');
     var btnWeekRepeat = $('#event-edit-modal button[name=week-repeat]');
     var btnLibraryPlace = $('#event-edit-modal button[name=library-place]');
@@ -94,6 +140,10 @@ $(document).ready(function() {
             // dayClick: function(event, jsEvent, view) {
             // },
             eventClick: function(event, jsEvent, view) {
+                if ($('#user_login').html() == 'AnonymousUser') {
+                    window.location = '/ru/admin/login/?next=/ru/calendar/';
+                }
+
                 cleanupEventForm();
                 $('#event-edit-modal input[name=id]').val(event.id);
                 $('#event-edit-modal input[name=created_by').val(event.created_by);
@@ -123,56 +173,6 @@ $(document).ready(function() {
     }
 
 
-    function refillCalendar() {
-        $.get(events_url).then(function(data){
-            var events = [];
-            $.each(data, function(i, event) {
-                var begin;
-                var end;
-
-                if (event.repeat == "WEEKDAY" && event.end_repeat) {
-                    end = moment(event.end_repeat);
-                } else {
-                    end = moment(event.start_date);
-                }
-
-                var current = moment(event.start_date);
-                var current_end = moment(event.end_date);
-                current.locale(dateLang);
-                current_end.locale(dateLang);
-                end.locale(dateLang);
-
-                while(moment(current).startOf('day').unix() <= moment(end).startOf('day').unix()) {
-                    var place = libraryId;
-                    if (event.categories.length != 0 && event.categories[0] == hallId) {
-                        place = hallId;
-                    }
-
-                    events.push(
-                        {'id': event.id,
-                         'title': event.title,
-                         'description': event.description,
-                         'start': current.format(),
-                         'end': current_end.format(),
-                         'source_start': event.start_date,
-                         'source_end': event.end_date,
-                         'repeat': event.repeat,
-                         'end_repeat': event.end_repeat,
-                         'created_by': event.created_by,
-                         'place': place
-                        }
-                    );
-
-                    current.add(7, 'day');
-                    current_end.add(7, 'day');
-                }
-            });
-
-            $('#calendar').fullCalendar('removeEvents');
-            $('#calendar').fullCalendar('addEventSource', events);
-            $('#calendar').fullCalendar('refetchEvents');
-        });
-    }
 
     btnHallPlace.click(function() {
         btnHallPlace.addClass('active');
@@ -229,14 +229,26 @@ $(document).ready(function() {
     $("#event-edit-modal input").focus(input_remove_error);
     $("#event-edit-modal input").change(input_remove_error);
 
+    $("#event-edit-modal .delete-button").click(function() {
+        $('#send-email-modal div[role=alert]').hide();
+        $('#email-subject').val(
+            'Событие "' + $('#event-edit-modal input[name=title]').val() +
+                '" не состоится ' + $('#event-edit-modal input[name=start_date]').val().split(' ')[0]);
+        $('#email-message').summernote('code', 'Здравствуйте!<br /><br />Событие отменяется.');
+        $('#send-email-modal input[name=event-id]').val($('#event-edit-modal input[name=id]').val());
+
+        $("#event-edit-modal").modal('hide');
+        $("#send-email-modal").modal('show');
+    });
+
     $("#event-edit-modal .save-button").click(function() {
         var form = $("#event-edit-modal form");
         var id = $('#event-edit-modal input[name=id]').val();
         if (id) {
-            var url = put_event + id;
+            var url = event_url + id;
             var method = 'PUT';
         } else {
-            var url = put_event;
+            var url = event_url;
             var method = 'POST';
         }
 
@@ -247,7 +259,6 @@ $(document).ready(function() {
             data: form.serialize(),
             success: function(data) {
                 $('#event-edit-modal').modal('hide');
-                // location.reload();
                 refillCalendar();
             },
             error: function(data) {

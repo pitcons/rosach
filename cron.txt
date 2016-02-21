@@ -1,0 +1,4 @@
+@hourly python manage.py runjobs hourly
+@daily python manage.py runjobs daily
+@weekly python manage.py runjobs weekly
+@monthly python manage.py runjobs monthly
