@@ -28,3 +28,4 @@ djangorestframework==3.3.2
 django-newsletter==0.6
 unicodecsv==0.14.1
 django-extensions==1.6.1
+sorl-thumbnail==12.4a1
