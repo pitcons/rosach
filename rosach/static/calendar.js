@@ -1,3 +1,4 @@
+
 function refillCalendar() {
     $.get(events_url).then(function(data){
         var events = [];
@@ -237,9 +238,37 @@ $(document).ready(function() {
         $('#email-message').summernote('code', 'Здравствуйте!<br /><br />Событие отменяется.');
         $('#send-email-modal input[name=event-id]').val($('#event-edit-modal input[name=id]').val());
 
+
+        $("#send-email-modal .just-delete-button").show();
+        $("#send-email-modal .delete-and-send-button").show();
+        $("#send-email-modal .send-button").hide();
+
         $("#event-edit-modal").modal('hide');
         $("#send-email-modal").modal('show');
     });
+
+    function showSendOnChange() {
+        var title = $('#event-edit-modal input[name=title]').val();
+        var when = $('#event-edit-modal input[name=start_date]').val();
+        var descr = $('#event-edit-modal textarea[name=description]').val();
+        $('#send-email-modal div[role=alert]').hide();
+        $('#email-subject').val(
+            'Событие "' + title +
+                '" состоится ' + when);
+        $('#email-message').summernote(
+            'code',
+            'Здравствуйте!<br /><br />' +
+            'Событие "' + title + '" состоится ' + when + '. <br />' +
+            descr
+        );
+        $('#send-email-modal input[name=event-id]').val($('#event-edit-modal input[name=id]').val());
+
+        $("#send-email-modal .just-delete-button").hide();
+        $("#send-email-modal .delete-and-send-button").hide();
+        $("#send-email-modal .send-button").show();
+        $("#event-edit-modal").modal('hide');
+        $("#send-email-modal").modal('show');
+    }
 
     $("#event-edit-modal .save-button").click(function() {
         var form = $("#event-edit-modal form");
@@ -258,7 +287,8 @@ $(document).ready(function() {
             dataType: 'json',
             data: form.serialize(),
             success: function(data) {
-                $('#event-edit-modal').modal('hide');
+                showSendOnChange();
+                // $('#event-edit-modal').modal('hide');
                 refillCalendar();
             },
             error: function(data) {
@@ -269,7 +299,6 @@ $(document).ready(function() {
                 }
             }
         });
-
     });
 
     createCalendar([]);
