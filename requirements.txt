@@ -33,3 +33,11 @@ Unidecode==0.04.19
 surlex==0.2.0
 cmsplugin-filer==1.0.1
 django-filer==1.1.1
+aldryn-apphooks-config==0.2.6
+django-parler==1.6.1
+django-taggit==0.18.0
+django-taggit-autosuggest==0.2.8
+django-taggit-templatetags==0.2.5
+django-meta==0.3.2
+django-meta-mixin==0.2.1
+djangocms-blog==0.6.3
