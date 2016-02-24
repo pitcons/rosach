@@ -14,6 +14,7 @@ from .rest import *
 
 urlpatterns = i18n_patterns('',
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^taggit_autosuggest/', include('taggit_autosuggest.urls')),
     url(r'^newsletter/', include('newsletter.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',

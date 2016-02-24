@@ -1,4 +1,5 @@
 {% load cms_tags staticfiles sekizai_tags menu_tags %}
+{% load i18n %}
 <!doctype html>
 <html>
     <head>
@@ -25,12 +26,18 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/">ДК Розы</a>
+                    <a class="navbar-brand" href="/">{% trans 'Rosa CH'%}</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        {% show_menu 0 1 100 100 "menu.html" %}
+                      {% show_menu 0 1 100 100 "menu.html" %}
                     </ul>
+                    <div class="language-chooser pull-right">
+                      <div class="btn-group" role="group" >
+                        <a href="{% page_language_url "ru" %}" type="button" class="btn btn-default {% if LANGUAGE_CODE == 'ru' %}active{%endif%}">RU</a>
+                        <a href="{% page_language_url "en" %}" type="button" class="btn btn-default {% if LANGUAGE_CODE == 'en' %}active{%endif%}">EN</a>
+                      </div>
+                    </div>
                 </div>
             </div>
             {% block content %}{% endblock content %}

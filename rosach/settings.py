@@ -1,4 +1,5 @@
 import os
+from django.utils.translation import ugettext_lazy as _
 gettext = lambda s: s
 DATA_DIR = os.path.dirname(os.path.dirname(__file__))
 """
@@ -163,6 +164,17 @@ INSTALLED_APPS = (
     'rosach',
     'rest_framework',
     'newsletter',
+
+    'filer',
+    'easy_thumbnails',
+    'aldryn_apphooks_config',
+    'cmsplugin_filer_image',
+    'parler',
+    'taggit',
+    'taggit_autosuggest',
+    'meta',
+    'meta_mixin',
+    'djangocms_blog',
 )
 
 LANGUAGES = (
@@ -204,7 +216,18 @@ CMS_TEMPLATES = (
 
 CMS_PERMISSION = True
 
-CMS_PLACEHOLDER_CONF = {}
+CMS_PLACEHOLDER_CONF = {
+    'post_content': {
+        'name' : _('Blog Content'),
+        # list of default plugins which will be automagically added when the placeholder will be created:
+        'default_plugins':[
+            {
+                'plugin_type':'TextPlugin',
+                'values':{'body':'<p>(There is no content, yet.)</p>'},
+            },
+        ]
+    },
+}
 
 DATABASES = {
     'default': {
@@ -218,7 +241,10 @@ DATABASES = {
 }
 
 MIGRATION_MODULES = {
-
+   # 'cms': 'cms.migrations_django', # only for django CMS 3.0
+   # 'menus': 'menus.migrations_django',  # only for django CMS 3.0
+   # 'filer': 'filer.migrations_django',  # only for django filer up to 0.9.9
+   # 'cmsplugin_filer_image': 'cmsplugin_filer_image.migrations_django',
 }
 
 SESSION_COOKIE_HTTPONLY = False
@@ -243,6 +269,18 @@ REST_FRAMEWORK = {
 }
 
 NEWSLETTER_CONFIRM_EMAIL = False
+
+THUMBNAIL_PROCESSORS = (
+    'easy_thumbnails.processors.colorspace',
+    'easy_thumbnails.processors.autocrop',
+    #'easy_thumbnails.processors.scale_and_crop',
+    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
+    'easy_thumbnails.processors.filters',
+)
+
+META_SITE_PROTOCOL = 'http'
+META_USE_SITES = True
+BLOG_USE_PLACEHOLDER = True
 
 # override settings
 import yaml

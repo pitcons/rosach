@@ -20,3 +20,7 @@ body {
 #send-email-modal .modal-dialog{
     width: 75%;
 }
+
+.language-chooser {
+    padding-top: 7px;
+}
