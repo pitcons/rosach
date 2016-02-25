@@ -106,7 +106,7 @@ $(document).ready(function() {
             events: events,
             customButtons: {
                 buttonAdd: {
-                    text: 'Новое событие',
+                    text: textNewEvent,
                     click: function() {
                         if ($('#user_login').html() == 'AnonymousUser') {
                             window.location = '/ru/admin/login/?next=/ru/calendar/';

@@ -47,6 +47,10 @@
         <script src="http://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.0/summernote.js"></script>
 
+        <script>
+          var dateLang = '{{ request.LANGUAGE_CODE }}';
+          var textNewEvent = '{% trans 'New event' %}';
+        </script>
         {% render_block "js" %}
         {% include 'calendar/head.html' %}
         <div style="display: none" id="user_login">{{ request.user }}</div>

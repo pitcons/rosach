@@ -11,7 +11,7 @@ class TestMenu(Menu):
 
     def get_nodes(self, request):
         nodes = []
-        n = NavigationNode(_('Blog'), "/blog", 1)
+        n = NavigationNode(_('Blog'), "/{0}/blog/".format(request.LANGUAGE_CODE), 10)
         nodes.append(n)
         return nodes
 
@@ -26,8 +26,8 @@ class MyMode(Modifier):
 
         # print '-------'
         # print nodes
-        # for node in nodes:
-        #     print node, node.url
+        for node in nodes:
+            print node, node.url
 
         # blog = NavigationNode(_('Blog'), "/blog", 1)
         # blog.selected = False
