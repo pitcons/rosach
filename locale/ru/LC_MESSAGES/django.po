@@ -148,4 +148,4 @@ msgstr "Отправить"
 
 #: rosach/templates/newsletter/message/message.txt:8
 msgid "Unsubscribe:"
-msgstr "Отписаться"
+msgstr "Отписаться:"
