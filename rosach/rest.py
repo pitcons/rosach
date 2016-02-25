@@ -136,5 +136,7 @@ class SendMessage(APIView):
                              post=message)
         article.save()
         submission = nm.Submission.from_message(message)
+        submission.prepared = True
+        submission.save()
 
         return Response({}, status=status.HTTP_201_CREATED)

@@ -164,6 +164,7 @@ INSTALLED_APPS = (
     'rosach',
     'rest_framework',
     'newsletter',
+    'sorl.thumbnail',
 
     'filer',
     'easy_thumbnails',

@@ -31,7 +31,7 @@ msgstr "Email уже подписан"
 
 #: rosach/rest.py:130
 msgid "That subject is alredy sended"
-msgstr "Письма с данной темой уже отправлялось."
+msgstr "Письмо с данной темой уже отправлялось."
 
 #: rosach/settings.py:182 rosach/settings.py:198
 msgid "ru"
