@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-25 03:57+0300\n"
+"POT-Creation-Date: 2016-02-26 01:43+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,15 +33,15 @@ msgstr "Email уже подписан"
 msgid "That subject is alredy sended"
 msgstr "Письмо с данной темой уже отправлялось."
 
-#: rosach/settings.py:182 rosach/settings.py:198
+#: rosach/settings.py:183 rosach/settings.py:199
 msgid "ru"
 msgstr "ru"
 
-#: rosach/settings.py:183 rosach/settings.py:205
+#: rosach/settings.py:184 rosach/settings.py:206
 msgid "en"
 msgstr "en"
 
-#: rosach/settings.py:221
+#: rosach/settings.py:222
 msgid "Blog Content"
 msgstr "Содержимое блога"
 
@@ -145,3 +145,7 @@ msgstr "Отправить и удалить"
 #: rosach/templates/calendar/send_email.html:31
 msgid "Send"
 msgstr "Отправить"
+
+#: rosach/templates/newsletter/message/message.txt:8
+msgid "Unsubscribe:"
+msgstr "Отписаться"
