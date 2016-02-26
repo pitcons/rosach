@@ -1,6 +1,6 @@
 {% load i18n %}
 {% for article in message.articles.all %}
-{{ article.title }}
+
 {{ article.text|striptags|safe }}
 
 {% endfor %}
