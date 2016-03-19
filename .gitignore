@@ -69,3 +69,5 @@ target/
 #custom
 settings.yml
 media
+rosach/static/task
+task

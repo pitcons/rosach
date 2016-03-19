@@ -169,7 +169,12 @@ INSTALLED_APPS = (
     'filer',
     'easy_thumbnails',
     'aldryn_apphooks_config',
+    'cmsplugin_filer_file',
+    'cmsplugin_filer_folder',
+    'cmsplugin_filer_link',
     'cmsplugin_filer_image',
+    'cmsplugin_filer_teaser',
+    'cmsplugin_filer_video',
     'parler',
     'taggit',
     'taggit_autosuggest',
@@ -212,7 +217,8 @@ CMS_LANGUAGES = {
 CMS_TEMPLATES = (
     ## Customize this
     ('page.html', 'Page'),
-    ('feature.html', 'Page with Feature')
+    ('feature.html', 'Page with Feature'),
+    ('main.html', 'Main page')
 )
 
 CMS_PERMISSION = True
@@ -282,6 +288,10 @@ THUMBNAIL_PROCESSORS = (
 META_SITE_PROTOCOL = 'http'
 META_USE_SITES = True
 BLOG_USE_PLACEHOLDER = True
+
+CMS_PAGE_CACHE = False
+CMS_PLACEHOLDER_CACHE = False
+CMS_PLUGIN_CACHE = False
 
 # override settings
 import yaml
