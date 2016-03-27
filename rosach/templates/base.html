@@ -12,197 +12,73 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:100' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static 'style.css'%}">
     {% render_block "css" %}
     {% block extra_head%}{% endblock %}
 
-    <script type='text/javascript' id='lt_ws' src='http://localhost:53370/socket.io/lighttable/ws.js'></script>
-
+    <script type='text/javascript' id='lt_ws' src='http://localhost:5678/socket.io/lighttable/ws.js'></script>
   </head>
   <body>
 
-      {% cms_toolbar %}
+    {% cms_toolbar %}
 
     <div class="container-fluid">
       <div class="row-fluid row-no-padding">
-        <div class="col-xs-12 col-sm-3" style="width: 23.6%">
-          <img id="logo-image" class="img-responsive" src="/static/images/logo.png" />
+        <div class="col-xs-12 col-sm-3 menu-column">
+          <div class="menu-wrap">
+            <a href="/{{ LANGUAGE_CODE }}/"><img id="logo-image" class="img-responsive" src="/static/images/logo.png" /></a>
 
-          <div class="lang-chooser">
-            <div class="{% if LANGUAGE_CODE == 'ru' %}active{%endif%}">
-              <a href="{% page_language_url "ru" %}">ru</a>
-            </div>
-            <div class="{% if LANGUAGE_CODE == 'en' %}active{%endif%}">
-              <a href="{% page_language_url "en" %}">en</a>
-            </div>
-          </div>
-
-          <div class="clearfix"></div>
-          <div class="menu-items">
-            <ul>
-              <li>
-                <div class="link-box">
-                  <a href="/{{ request.LANGUAGE_CODE }}/calndar">{% trans 'calendar' %}</a>
-                </div>
-              </li>
-              <li>
-                <div class="link-box">
-                  <a href="/{{ request.LANGUAGE_CODE }}/blog">{% trans 'blog' %}</a>
-                </div>
-              </li>
-              <li>
-                <div class="link-box">
-                  <a href="/{{ request.LANGUAGE_CODE }}/about">{% trans 'about' %}</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="clearfix "></div>
-          <div class="soc-nets">
-            <div>
-              <a target="_blank" href="https://www.facebook.com/groups/800787473370867/" title="Facebook" id="fb-link">Facebook</a>
-            </div>
-            <div>
-              <a target="_blank" href="https://vk.com/dkrose" title="Vk" id="vk-link">Vk</a>
-            </div>
-          </div>
-
-        </div>
-        <div class="col-xs-12 col-sm-9" style="width: 76.4%">
-          <div class="row-fluid row-no-padding">
-
-
-            <div class="col-xs-12 col-sm-12 col-lg-6">
-
-              <div class="club">
-                <img class="img-responsive scool-img" src='/static/images/main-scool.png' />
-                <div class="club-header">
-                  {% placeholder "club_1_title" %}
-                </div>
-                <div class="club-content club-dark pull-right">
-                  <div class="club-text">
-                    {% placeholder "club_1_text" %}
-                  </div>
-
-                  <div class="club-links">
-                    <div class="link-box pull-right">
-                      {% placeholder "club_1_link" %}
-                    </div>
-                  </div>
-                </div>
+            <div class="lang-chooser">
+              <div class="{% if LANGUAGE_CODE == 'ru' %}active{%endif%}">
+                <a href="{% page_language_url "ru" %}">ru</a>
               </div>
-
-              <div class="clearfix"></div>
-              <div class="club">
-                <div class="club-separator club-dark"></div>
-                <img class="img-responsive club-dark" src='/static/images/main-workshop.png' />
-                <div class="club-header">
-                  {% placeholder "club_3_title" %}
-                </div>
-
-                <div class="club-content club-dark pull-right">
-                  <div class="club-text">
-                    {% placeholder "club_3_text" %}
-                  </div>
-
-                  <div class="club-links">
-                    <div class="link-box pull-right">
-                      {% placeholder "club_3_link" %}
-                    </div>
-                  </div>
-                </div>
+              <div class="{% if LANGUAGE_CODE == 'en' %}active{%endif%}">
+                <a href="{% page_language_url "en" %}">en</a>
               </div>
-
-              <div class="clearfix"></div>
-              <div class="club">
-                <div class="club-separator club-dark"></div>
-                <img class="img-responsive club-dark" src='/static/images/main-workshop.png' />
-                <div class="club-header">
-                  {% placeholder "club_5_title" %}
-                </div>
-
-                <div class="club-content club-dark pull-right">
-                  <div class="club-text">
-                    {% placeholder "club_5_text" %}
-                  </div>
-
-                  <div class="club-links">
-                    <div class="link-box pull-right">
-                      {% placeholder "club_5_link" %}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
             </div>
 
-
-            <div class="col-xs-12 col-sm-12 col-lg-6">
-
-              <div class="club">
-                <img class="img-responsive lib-img" src='/static/images/main-lib.png' />
-                <div class="club-header lib-header">
-                  {% placeholder "club_2_title" %}
-                </div>
-                <div class="club-content">
-                  <div class="club-text">
-                    {% placeholder "club_2_text" %}
+            <div class="clearfix"></div>
+            <div class="menu-items">
+              <ul>
+                {% page_attribute "slug" request.current_page as current_slug %}
+                <li>
+                  <div class="link-box {% if current_slug == 'calendar' %}link-box-active{% endif %}">
+                    <a href="/{{ request.LANGUAGE_CODE }}/calendar/">{% trans 'calendar' %}</a>
                   </div>
-
-                  <div class="club-links">
-                    <div class="link-box link-box-light pull-right">
-                      {% placeholder "club_2_link" %}
-                    </div>
+                </li>
+                <li>
+                  <div class="link-box {% if current_slug == 'blog' %}link-box-active{% endif %}">
+                    <a href="/{{ request.LANGUAGE_CODE }}/blog">{% trans 'blog' %}</a>
                   </div>
-                </div>
-              </div>
-
-              <div class="clearfix"></div>
-              <div class="club">
-                <div class="club-lib-separator"></div>
-                  <img class="img-responsive" src='/static/images/main-english.png' />
-                <div class="club-header">
-                  {% placeholder "club_4_title" %}
-                </div>
-                <div class="club-content lib-text">
-                  <div class="club-text">
-                    {% placeholder "club_4_text" %}
+                </li>
+                <li>
+                  <div class="link-box {% if current_slug == 'about' %}link-box-active{% endif %}">
+                    <a href="/{{ request.LANGUAGE_CODE }}/about">{% trans 'about' %}</a>
                   </div>
-
-                  <div class="club-links">
-                    <div class="link-box link-box-light pull-right">
-                      {% placeholder "club_4_link" %}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="clearfix"></div>
-              <div class="club">
-                <div class="club-separator"></div>
-                  <img class="img-responsive" src='/static/images/main-english.png' />
-                <div class="club-header">
-                  {% placeholder "club_6_title" %}
-                </div>
-                <div class="club-content lib-text">
-                  <div class="club-text">
-                    {% placeholder "club_6_text" %}
-                  </div>
-
-                  <div class="club-links">
-                    <div class="link-box link-box-light pull-right">
-                      {% placeholder "club_6_link" %}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
+                </li>
+              </ul>
             </div>
 
+            <div class="clearfix "></div>
+            <div class="soc-nets">
+              <div>
+                <a class="soc-sprite sprite-fb" target="_blank" href="https://www.facebook.com/groups/800787473370867/" title="Facebook">Facebook</a>
+              </div>
+              <div>
+                <a class="soc-sprite sprite-vk" target="_blank" href="https://vk.com/dkrose" title="Vk" >Vk</a>
+              </div>
+            </div>
           </div>
         </div>
+
+
+        <div class="col-xs-12 col-sm-9 content-column">
+          <div id="content">
+            {% block content %}{% endblock %}
+          </div>
+        </div> <!-- content-column -->
       </div>
     </div>
 

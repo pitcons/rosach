@@ -1,40 +1,43 @@
 {% load i18n %}
-
+<span class="disable-menu-scroll"></span>
+<div id="calendar-page">
 {% include 'calendar/send_email.html' %}
 {% include 'calendar/event_edit.html' %}
 
 
 <div class="row">
-  <div class="col-sm-6 ">
-    <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end place-sample" style="background: white; color: black">
-      <div class="fc-content"><span class="fc-time"></span> <span class="fc-title">Событие состоится в библиотеке</span></div>
-    </a>
+
+  <div class="col-sm-6 event-sample-table">
+    <table>
+    <tr>
+      <td>
+        <div class="lib-event">Событие в библиотеке</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="hall-event">Событие в зале</div>
+      </td>
+    </tr>
+    </table>
   </div>
-</div>
 
-
-
-<div class="row">
   <div class="col-sm-6">
-    <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end place-sample" >
-      <div class="fc-content"><span class="fc-time"></span> <span class="fc-title">Событие состоится в зале</span></div>
-    </a>
-  </div>
-  <div class="col-sm-6">
-        <form id="subscribe-form" class="form-horizontal">
+    <form id="subscribe-form" >
 
-          <div class="form-group">
-            <label for="title" class="col-sm-3 control-label">{% trans 'E-mail' %}</label>
-            <div class="col-sm-6">
-              <input name="email_field" type='text' class="form-control" />
-              <span class="help-block"></span>
-            </div>
-            <div class="col-sm-3">
-              <button id="subscribe-button" type="button" class="btn btn-primary pull-left">{% trans 'subscribe' %}</button>
-            </div>
-          </div>
-        </form>
+      <div class="pull-right">
+        <div class="subscribe-button-wrap">
+          <a id="subscribe-button">{% trans 'subscribe' %}</a>
+        </div>
 
+      </div>
+      <div class="form-group pull-right">
+          <input name="email_field" type='text' placeholder="{% trans 'e-mail' %}" />
+          <span class="help-block"></span>
+      </div>
+
+
+    </form>
   </div>
 </div>
 
@@ -42,3 +45,4 @@
 
 
 <div id='calendar'></div>
+</div>

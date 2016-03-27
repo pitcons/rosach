@@ -95,11 +95,13 @@ $(document).ready(function() {
             eventDurationEditable: false,
             eventStartEditable: false,
             header: {
-                left: 'prev,next today, buttonAdd',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
+                left: 'title, prev, next',
+                center: '',
+                right: 'today, buttonAdd'
+                //right: 'month,agendaWeek,agendaDay'
             },
             timezone: 'Europe/Moscow',
+            timeFormat: 'H:mm',
             // defaultDate: '2016-03-25',
             editable: true,
             eventLimit: true, // allow "more" link when too many events
@@ -119,8 +121,7 @@ $(document).ready(function() {
             },
             eventAfterRender: function (event, element, view) {
                 if (event.place == libraryId) {
-                    element.css('background-color', "white");
-                    element.css('color', "black");
+                    element.css('background-color', "#cfdcdc");
                 }
             },
             eventRender: function(event, element) {
@@ -142,7 +143,8 @@ $(document).ready(function() {
             // },
             eventClick: function(event, jsEvent, view) {
                 if ($('#user_login').html() == 'AnonymousUser') {
-                    window.location = '/ru/admin/login/?next=/ru/calendar/';
+                  return False;
+                    //window.location = '/ru/admin/login/?next=/ru/calendar/';
                 }
 
                 cleanupEventForm();

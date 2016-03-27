@@ -164,7 +164,7 @@ INSTALLED_APPS = (
     'rosach',
     'rest_framework',
     'newsletter',
-    'sorl.thumbnail',
+#    'sorl.thumbnail',
 
     'filer',
     'easy_thumbnails',
@@ -218,7 +218,8 @@ CMS_TEMPLATES = (
     ## Customize this
     ('page.html', 'Page'),
     ('feature.html', 'Page with Feature'),
-    ('main.html', 'Main page')
+    ('main.html', 'Main page'),
+    ('about.html', 'About page')
 )
 
 CMS_PERMISSION = True

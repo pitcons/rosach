@@ -1,27 +1,33 @@
-#calendar {
-/* max-width: 900px; */
-  margin: 0 auto;
-}
 
 body {
   overflow-x: hidden;
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
+  color: #000000;
 }
 
-.row-no-padding [class*="col-"] {
+
+.row-no-padding > [class*="col-"] {
   padding-left: 0;
   padding-right: 0;
 }
+/**/
 
-/*
-.container {
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 1440px;
-  width: 1440px;
+#content {
+  position: relative;
 }
-*/
+
+.content-column {
+  width: 76.4%;
+}
+
+.menu-wrap {
+    position: relative;
+}
+
+.menu-column {
+  width: 23.6%
+}
 
 .container-fluid {
   max-width: 1460px;
@@ -45,12 +51,9 @@ body {
 
 #logo-image {
   position: relative;
-  z-index: 5000;
+  z-index: 1000;
 }
 
-#rosa-menu a {
-
-}
 
 #rosa-content {
   height: 1000px;
@@ -78,9 +81,15 @@ body {
   font-size: 21px;
 }
 
+.lang-chooser a:hover,
+.lang-chooser a:visited,
+.lang-chooser a:link,
+.lang-chooser a:active {
+  text-decoration: none;
+}
+
 .lang-chooser a {
   color: black;
-  /* text-decoration: none; */
 }
 
 .lang-chooser div {
@@ -123,10 +132,31 @@ body {
     font-weight: 500;
 }
 
+.link-box:hover {
+  background: #ab0101; /* #162b29; /*#f10000;*/
+}
+
+.link-box-light:hover {
+  background: #8da6a6;
+}
+
+.link-box a:hover,
+.link-box a:visited,
+.link-box a:link,
+.link-box a:active {
+  text-decoration: none;
+}
+
+
+
 .link-box {
   background: #be0000;
   display: inline;
   padding: 0px 1px 0px 1px;
+}
+
+.link-box-active, .link-box-active:hover {
+  background: #162b29;
 }
 
 .link-box-light {
@@ -136,6 +166,39 @@ body {
 .link-box a {
   color: white;
   font-size: 24px;
+}
+
+
+.soc-sprite {
+    background-image: url(/static/images/dk-soc.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-fb {
+    width: 90px;
+    height: 90px;
+    background-position: -5px -5px;
+    text-indent:-9999px;
+}
+
+.sprite-fb:hover {
+    width: 90px;
+    height: 90px;
+    background-position: -105px -5px;
+}
+
+.sprite-vk {
+    width: 90px;
+    height: 90px;
+    background-position: -5px -105px;
+    text-indent:-9999px;
+}
+
+.sprite-vk:hover {
+    width: 90px;
+    height: 90px;
+    background-position: -105px -105px;
 }
 
 
@@ -167,15 +230,10 @@ body {
 }
 
 
-/* CLUBS on main */
-
 .club {
-/*  height: 558px; */
   position: relative;
+  max-width: 558px;
   z-index: 100;
-  left: -4.5%;
-
-/*  left: -30px; */
 }
 
 .club-separator {
@@ -191,32 +249,84 @@ body {
   top: -60px;
   font-weight: 400px;
   font-size: 30px;
-  height: 44px;
+  height: 0px;
   color: #ffffff;
   text-align: left;
   padding-left: 5%;
+  padding-right: 5px;
   text-shadow:
     #4a4a4a 0px 0px 4px,
     #4a4a4a 0px 0px 6px,
     #4a4a4a 2px 2px 6px;
 }
 
+.club-header > span {
+
+}
+
 .club-content {
-  margin-top: -44px;
   padding-top: 29px;
   padding-left: 34px;
   line-height: 1.66em;
-  font-family: Roboto;
-  font-weight: 300;
+  font-weight: 400;
+  font-size: 18px;
+  font-family: Open Sans;
   width: 100%;
   margin-left: 1px;
-  font-size: 18px;
-  font-family: Open Sans Light;
+}
+
+
+.club-dark > .club-text {
+  text-shadow:
+    #000000 0px 0px 4px;
+}
+
+.club-header-light p {
+  padding-left: 6px;
+}
+
+.club-header-soft-dark p,
+.club-soft-dark .club-text,
+.club-header-dark p,
+.club-dark .club-text {
+  padding-left: 3px;
 }
 
 .club-text {
-    padding-right: 16px;
-    min-height: 145px;
+  padding-right: 20px;
+  min-height: 145px;
+  position: relative;
+  z-index: 2000;
+}
+
+.club-date {
+  text-transform: lowercase;
+  color: #a0a0a0;
+  font-size: 14px;
+  padding-bottom: 30px;
+}
+
+.club .blog-continue-link {
+  float: right;
+  font-size: 18px;
+  line-height: 20px;
+  margin-top: -20px;
+  height: 20px;
+  width: 29px;
+  background: #a3b2b5;
+  text-align: center;
+}
+
+.club .blog-continue-link a:hover,
+.club .blog-continue-link a:visited,
+.club .blog-continue-link a:link,
+.club .blog-continue-link a:active {
+  color: white;
+  text-decoration: none;
+}
+
+.club img {
+  min-height: 308px;
 }
 
 .clib-links ul li {
@@ -224,8 +334,12 @@ body {
 }
 
 .club-dark {
-  color: #b3bfbf;
+  color: #bbbbbb;
   background: #172b2a;
+}
+
+.club-soft-dark {
+  background: #f6f6f6;
 }
 
 .club-links {
@@ -233,8 +347,15 @@ body {
   padding-top: 20px;
 }
 
+.club-links> .link-box {
+  height: 20px;
+}
 .club-links> .link-box a {
-  /* font-size: 18px; */
+  position: relative;
+  top: -5px;
+  font-size: 18px;
+  font-family: Roboto;
+  font-weight: 300;
 }
 
 .club-main-scool {
@@ -256,3 +377,238 @@ body {
 .lib-header {
   margin-top: -28px;
 }
+
+.body-header {
+  margin-top: -76px;
+}
+
+#calendar-page {
+  margin-top: 30px;
+}
+
+#calendar {
+  margin: 0 auto;
+}
+
+.event-sample-table {
+  display: table;
+}
+
+div.lib-event {
+  background: #cfdcdc;
+}
+div.hall-event {
+  border-bottom: 1px solid #cfdcdc;
+}
+
+div.lib-event,
+div.hall-event {
+  font-size: 12px;
+  font-family: Open Sans;
+  color: #162b29;
+  margin-left: 20px;
+}
+
+#about h1 {
+  font-family: Roboto;
+  font-weight: 500;
+}
+
+#about {
+  padding-top: 103px;
+  padding-left: 35px;
+}
+
+#about .content {
+  margin-top: 63px;
+  font-weight: 300;
+}
+
+#about .text {
+  font-family: Open Sans;
+  line-height: 1.7em;
+  background-image: url('/static/images/odk_bg.png');
+  background-repeat:no-repeat;
+  background-size:contain;
+  background-position: top center;
+  padding-bottom: 20px;
+}
+
+#about .text p {
+  padding-bottom: 15px;
+}
+
+#about .filer_image {
+  max-width: 100%;
+  height: auto;
+  display:block;
+}
+
+#calendar {
+  margin-top: 50px;
+}
+
+#calendar h2 {
+  font-size: 36px;
+  font-weight: 500;
+  padding-left: 15px;
+  width: 300px;
+  text-align: left;
+}
+
+#calendar .fc-icon {
+  font-family: Open sans;
+  font-size: 20px;
+  color: #a1b4b4;
+  display: inline;
+  line-height: 40px;
+}
+
+#calendar .fc-icon:hover {
+  color: #8da6a6;
+}
+
+#calendar .fc-icon-left-single-arrow:after {
+  content: "<";
+}
+
+#calendar .fc-icon-right-single-arrow:after {
+  content: ">";
+}
+
+#calendar .fc-time {
+  font-weight: normal;
+}
+
+#calendar .fc-event {
+  background: none;
+  color: #162b29;
+  font-size: 12px;
+  font-family: Open Sans;
+  border: 0px;
+  border-bottom: 1px solid #a1b4b4;
+  border-radius: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+
+#calendar table tr td {
+  border-color: #a1b4b4 !important;
+}
+
+#calendar table th {
+  border-style: none;
+  color: #a1b4b4;
+  text-transform: uppercase;
+
+}
+
+#calendar div.fc-content-skeleton table thead tr {
+  border-bottom: 1px solid #a1b4b4;
+}
+
+#calendar table  tr td {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+#calendar > .fc-view-container > div.fc-view > table > thead > tr > td {
+  border-style: none;
+}
+
+#calendar > .fc-view-container > div.fc-view > table > tbody > tr > td {
+  border-style: none;
+}
+
+#calendar > .fc-view-container > div.fc-view > table > tbody > tr {
+  border-style: none;
+}
+
+#calendar table .fc-head-container  {
+
+}
+
+#calendar .fc-today {
+  background-color: #f1f4f4;
+}
+
+#calendar button {
+  background: none;
+  border: none;
+  outline:none;
+  color: #cfdcdc;
+  box-shadow: none;
+  font-size: 22px;
+  font-family: Open Sans;
+}
+
+#calendar button.fc-today-button,
+#calendar button.fc-buttonAdd-button {
+  color: black;
+  font-weight: 300;
+}
+
+#calendar button.fc-today-button:hover,
+#calendar button.fc-buttonAdd-button:hover {
+  text-decoration: underline;
+}
+
+
+#calendar button.fc-state-disabled {
+  cursor: default;
+  color: #a1b4b4;
+}
+
+#calendar button.fc-state-disabled:hover {
+  text-decoration: none;
+}
+
+#calendar .fc-toolbar .fc-right {
+  margin-right: -13px;
+}
+
+#subscribe-form {
+  padding-top: 1px;
+}
+
+#subscribe-form input {
+  height: 20px;
+  font-size: 14px;
+  padding: 1px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid #112c25;
+  color: #112c25;
+  width: 192px;
+  margin-right: 2px;
+}
+
+#subscribe-form .help-block {
+  font-size: 12px;
+  position: absolute;
+}
+
+
+#subscribe-form .subscribe-button-wrap {
+  height: 20px;
+  background-color: #be0000;
+  margin-top: 4px;
+}
+
+#subscribe-form .subscribe-button-wrap:hover {
+  background: #ab0101;
+}
+
+
+#subscribe-form .subscribe-button-wrap a {
+  padding-left: 2px;
+  padding-right: 2px;
+  position: relative;
+  font-weight: 300;
+  top: -4px;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+

@@ -1,0 +1,110 @@
+{% extends "djangocms_blog/base.html" %}
+{% load cms_tags %}
+{% load i18n thumbnail %}{% spaceless %}
+
+{% block canonical_url %}<link rel="canonical" href="{{ view.get_view_url }}"/>{% endblock canonical_url %}
+
+{% block content_blog %}
+
+{% for post in post_list %}
+<!-- {% cycle 'even' 'odd' as parity %} -->
+
+{% if parity == 'even' %}
+<div class="row-fluid row-no-padding">
+  <div class="col-xs-12 col-sm-12 col-lg-6">
+    <div class="club">
+      {% if post.main_image %}
+      <img class="img-responsive club-soft-dark" src='{% thumbnail post.main_image 558x308 crop %}' />
+      {% else %}
+      <img class="img-responsive club-soft-dark" src='/static/images/main-scool.png' />
+      {% endif %}
+      <div class="club-header club-header-soft-dark">
+        <p>{{ post.title }}</p>
+      </div>
+
+      <div class="club-content club-soft-dark pull-right">
+        <div class="club-text">
+          {% render_model post "abstract" %}
+        </div>
+        <div class="blog-continue-link">
+          <a href="{{ post.get_absolute_url }}">&gt;</a>
+        </div>
+        <div class="club-date">
+          {{ post.date_created|date:"d M Y" }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+  {% else %}
+  <div class="col-xs-12 col-sm-12 col-lg-6">
+    <div class="club">
+      {% if post.main_image %}
+      <img class="img-responsive" src='{% thumbnail post.main_image 558x308 crop %}' />
+      {% else %}
+      <img class="img-responsive" src='/static/images/main-scool.png' />
+      {% endif %}
+      <div class="club-header club-header-light">
+        <p>{{ post.title }}</p>
+      </div>
+      <div class="club-content">
+        <div class="club-text">
+          {% render_model post "abstract" %}
+        </div>
+        <div class="blog-continue-link">
+          <a href="{{ post.get_absolute_url }}">&gt;</a>
+        </div>
+        <div class="club-date">
+          {{ post.date_created|date:"d M Y" }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+  {% endif %}
+
+{% endfor %}
+
+
+
+{% endblock %}
+
+{% block content_blog_xxx %}
+<section class="blog-list">
+    {% block blog_title %}
+    <header>
+        <h2>
+        {% if author %}{% trans "Articles by" %} {{ author.get_full_name }}
+        {% elif archive_date %}{% trans "Archive" %} &ndash; {% if month %}{{ archive_date|date:'F' }} {% endif %}{{ year }}
+        {% elif tagged_entries %}{% trans "Tag" %} &ndash; {{ tagged_entries|capfirst }}
+        {% elif category %}{% trans "Category" %} &ndash; {{ category }}{% endif %}
+        </h2>
+    </header>
+    {% endblock %}
+
+    {% for post in post_list %}
+        {% include "djangocms_blog/includes/blog_item.html" with post=post image="true" TRUNCWORDS_COUNT=TRUNCWORDS_COUNT %}
+    {% empty %}
+    <p class="blog-empty">{% trans "No article found." %}</p>
+    {% endfor %}
+
+    {% if author or archive_date or tagged_entries %}
+    <p class="blog-back"><a href="{% url 'djangocms_blog:posts-latest' %}">{% trans "Back" %}</a></p>
+    {% endif %}
+    {% if is_paginated %}
+    <nav class="{% firstof css_grid instance.css_grid %} pagination">
+        {% if page_obj.has_previous %}
+            <a href="?{{ view.page_kwarg }}={{ page_obj.previous_page_number }}">&laquo; {% trans "previous" %}</a>
+        {% endif %}
+        <span class="current">
+            {% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ paginator.num_pages }}
+        </span>
+        {% if page_obj.has_next %}
+            <a href="?{{ view.page_kwarg }}={{ page_obj.next_page_number }}">{% trans "next" %} &raquo;</a>
+        {% endif %}
+    </nav>
+    {% endif %}
+</section>
+{% endblock %}
+{% endspaceless %}
