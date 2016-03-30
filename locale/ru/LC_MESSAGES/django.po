@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 16:34+0300\n"
+"POT-Creation-Date: 2016-03-30 14:17+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,35 +33,31 @@ msgstr "Email уже подписан"
 msgid "That subject is alredy sended"
 msgstr "Письмо с данной темой уже отправлялось."
 
-#: rosach/settings.py:183 rosach/settings.py:199
+#: rosach/settings.py:188 rosach/settings.py:204
 msgid "ru"
 msgstr "ru"
 
-#: rosach/settings.py:184 rosach/settings.py:206
+#: rosach/settings.py:189 rosach/settings.py:211
 msgid "en"
 msgstr "en"
 
-#: rosach/settings.py:223
+#: rosach/settings.py:229
 msgid "Blog Content"
 msgstr "Содержимое блога"
 
-#: rosach/templates/base.html:45
+#: rosach/templates/base.html:48
 msgid "calendar"
 msgstr "календарь"
 
-#: rosach/templates/base.html:46
-msgid "blog"
-msgstr "блог"
+#: rosach/templates/base.html:53
+msgid "archive"
+msgstr "архив"
 
-#: rosach/templates/base.html:47
+#: rosach/templates/base.html:58
 msgid "about"
 msgstr "о дк"
 
-#: rosach/templates/base.html:66
-msgid "Rosa CH"
-msgstr "ДК Розы"
-
-#: rosach/templates/base.html:90
+#: rosach/templates/base.html:92
 msgid "New event"
 msgstr "Новое событие"
 
@@ -126,13 +122,15 @@ msgstr "Закрыть"
 msgid "Save changes"
 msgstr "Сохранить"
 
-#: rosach/templates/calendar/main.html:27
-msgid "E-mail"
-msgstr "E-mail"
-
-#: rosach/templates/calendar/main.html:33
+#: rosach/templates/calendar/main.html:30
 msgid "subscribe"
 msgstr "подписаться"
+
+#: rosach/templates/calendar/main.html:35
+#, fuzzy
+#| msgid "E-mail"
+msgid "e-mail"
+msgstr "E-mail"
 
 #: rosach/templates/calendar/send_email.html:8
 msgid "Send notification email"
@@ -162,6 +160,46 @@ msgstr "Отправить"
 msgid "read more"
 msgstr ""
 
+#: rosach/templates/djangocms_blog/post_list.html:78
+msgid "Articles by"
+msgstr ""
+
+#: rosach/templates/djangocms_blog/post_list.html:79
+msgid "Archive"
+msgstr ""
+
+#: rosach/templates/djangocms_blog/post_list.html:80
+msgid "Tag"
+msgstr ""
+
+#: rosach/templates/djangocms_blog/post_list.html:81
+msgid "Category"
+msgstr ""
+
+#: rosach/templates/djangocms_blog/post_list.html:89
+msgid "No article found."
+msgstr ""
+
+#: rosach/templates/djangocms_blog/post_list.html:93
+msgid "Back"
+msgstr ""
+
+#: rosach/templates/djangocms_blog/post_list.html:98
+msgid "previous"
+msgstr ""
+
+#: rosach/templates/djangocms_blog/post_list.html:101
+msgid "Page"
+msgstr ""
+
+#: rosach/templates/djangocms_blog/post_list.html:101
+msgid "of"
+msgstr ""
+
+#: rosach/templates/djangocms_blog/post_list.html:104
+msgid "next"
+msgstr ""
+
 #: rosach/templates/newsletter/message/message.html:20
 msgid "Read more"
 msgstr ""
@@ -175,3 +213,9 @@ msgstr "Отписаться:"
 #: rosach/templates/newsletter/message/message.txt:8
 msgid "Unsubscribe:"
 msgstr "Отписаться:"
+
+#~ msgid "blog"
+#~ msgstr "блог"
+
+#~ msgid "Rosa CH"
+#~ msgstr "ДК Розы"

@@ -17,8 +17,13 @@ function clubTextHack() {
 }
 
 function libImgHack() {
+
   var diff = $('.scool-img').height() - $('.lib-img').height();
   $('.lib-header').css('margin-top', diff);
+  if (diff == 0) {
+    setTimeout(function(){ libImgHack(); }, 500);
+  }
+
 }
 
 function contentLeftHack() {
