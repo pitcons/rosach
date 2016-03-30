@@ -1,7 +1,7 @@
 function clubTextHack() {
   for(var i = 1;;i++) {
     var maxHeight = 0;
-    $('.club-line-'+ i +' .club-text').each(function(){
+    $('.club-line-'+ i +' .club-text').each(function() {
       var height = $(this).height();
       if (maxHeight < height) {
         maxHeight = height;
@@ -47,11 +47,13 @@ function clubHeaderHack() {
 
 
 function runHacks() {
+  $('#content').removeClass('hidden');
+
   clubTextHack();
   libImgHack();
   clubHeaderHack();
   contentLeftHack();
-  $('#content').removeClass('hidden');
+
 }
 
 function menuScroll() {
