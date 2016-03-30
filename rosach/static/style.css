@@ -4,6 +4,7 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
   color: #000000;
+  overflow-y: scroll;
 }
 
 
@@ -409,31 +410,41 @@ div.hall-event {
   margin-left: 20px;
 }
 
+.post-detail h1,
 #about h1 {
   font-family: Roboto;
   font-weight: 500;
 }
 
+.post-detail,
 #about {
   padding-top: 103px;
   padding-left: 35px;
 }
 
+.post-detail .blog-content,
 #about .content {
   margin-top: 63px;
   font-weight: 300;
 }
 
+
 #about .text {
-  font-family: Open Sans;
-  line-height: 1.7em;
   background-image: url('/static/images/odk_bg.png');
   background-repeat:no-repeat;
   background-size:contain;
   background-position: top center;
+}
+
+
+.post-detail .blog-content,
+#about .text {
+  font-family: Open Sans;
+  line-height: 1.7em;
   padding-bottom: 20px;
 }
 
+.post-detail .blog-content p,
 #about .text p {
   padding-bottom: 15px;
 }

@@ -31,9 +31,11 @@ function contentLeftHack() {
 }
 
 function clubHeaderHack() {
-  $('.club-header p').each(function(){
-
-    if ($(this).height() > 100) {
+  $('.club-header p').each(function() {
+    if ($(this).height() == 0) {
+      setTimeout(function(){ clubHeaderHack(); }, 500);
+      return;
+    } else if ($(this).height() > 100) {
       $(this).closest('div').css("top", "-140px");
     } else if ($(this).height() > 44) {
       $(this).closest('div').css("top", "-100px");
@@ -49,6 +51,7 @@ function runHacks() {
   libImgHack();
   clubHeaderHack();
   contentLeftHack();
+  $('#content').removeClass('hidden');
 }
 
 function menuScroll() {
