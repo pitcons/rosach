@@ -46,6 +46,12 @@ function clubHeaderHack() {
 }
 
 
+function blogLinkHack() {
+  $(".blog-continue-link").click(function(){
+    window.location = $(this).find('a').attr('href');
+  });
+}
+
 function runHacks() {
   $('#content').removeClass('hidden');
 
@@ -53,7 +59,7 @@ function runHacks() {
   libImgHack();
   clubHeaderHack();
   contentLeftHack();
-
+  blogLinkHack();
 }
 
 function menuScroll() {

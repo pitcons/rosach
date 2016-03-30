@@ -307,7 +307,13 @@ body {
   padding-bottom: 30px;
 }
 
+.club .blog-continue-link:hover {
+  cursor: pointer;
+}
+
 .club .blog-continue-link {
+  position: relative;
+  z-index: 2005;
   float: right;
   font-size: 18px;
   line-height: 20px;
