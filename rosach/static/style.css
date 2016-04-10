@@ -454,8 +454,7 @@ div.hall-event {
 }
 
 
-#about .text,
-#details .text {
+#about .text {
   background-image: url('/static/images/odk_bg.png');
   background-repeat:no-repeat;
   background-size:contain;
@@ -481,7 +480,8 @@ div.hall-event {
 #details .filer_image {
   max-width: 100%;
   height: auto;
-  display:block;
+  display: block;
+  padding: 1px;
 }
 
 #calendar {
