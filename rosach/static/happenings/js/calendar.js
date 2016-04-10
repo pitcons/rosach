@@ -41,7 +41,7 @@ if (window.jQuery) {
                     + e.weekday  + '</div>'
                     + '</div>'
                     + '<div class="month-event-title">'
-                    + '<a href="/calendar/event/' + e.pk 
+                    + '<a href="/calendar/event/' + e.pk
                     + '" style="color:' + fnt + ';">'
                     + e.fields.title + '</a></div></li>'
                     );
@@ -91,8 +91,8 @@ if (window.jQuery) {
                 qs += '&cal_category=' + cat;
             if (tag !== undefined)
                 qs += '&cal_tag=' + tag;
-        
-            $.ajax({ 
+
+            $.ajax({
                 type: "GET",
                 url: this.href + qs,
                 data: {},
@@ -100,7 +100,7 @@ if (window.jQuery) {
                 dataType: 'json'
             });
         });
-        
+
         pop_();
 
         ['#cal-today-btn', '.month-arrow-left', '.month-arrow-right']
@@ -140,12 +140,12 @@ if (window.jQuery) {
                     for (var i = 0; i < t.length; i++) {
                         var name = t[i].split('=')[0];
                         if (name === 'cal_category' || name === 'cal_tag')
-                           qs += t[i] + '&'; 
+                           qs += t[i] + '&';
                     }
 
                     // When the 'Today' button is pressed, we want to start
                     // from today, which means ignoring any dates given in the
-                    // url or via querystrings. 
+                    // url or via querystrings.
                     // That's what cal_ignore qs is for.
                     qs += 'cal_ignore=true';
 
@@ -160,7 +160,7 @@ if (window.jQuery) {
                 } else if (cal.length) {
                     $.getJSON('/calendar/month/shift/' + qs, data, calSuccess);
                 } else if (list.length) {
-                    $.getJSON('/calendar/event-list/shift/' + qs, data, 
+                    $.getJSON('/calendar/event-list/shift/' + qs, data,
                             eventListSuccess);
                 }
             });

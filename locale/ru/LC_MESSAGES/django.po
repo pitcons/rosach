@@ -134,7 +134,7 @@ msgstr "E-mail"
 
 #: rosach/templates/calendar/send_email.html:8
 msgid "Send notification email"
-msgstr "Отправка emai"
+msgstr "Отправка email"
 
 #: rosach/templates/calendar/send_email.html:17
 msgid "Subject:"

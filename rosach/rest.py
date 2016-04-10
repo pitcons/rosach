@@ -36,6 +36,31 @@ class DateTimeTzAwareField(serializers.DateTimeField):
         return super(DateTimeTzAwareField, self).to_representation(value)
 
 
+class CancellationSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = hm.Event
+        fields = ('id', 'event', 'date')
+
+    event = serializers.PrimaryKeyRelatedField(
+        queryset = hm.Event.objects.all(),
+        many=False,
+        read_only=False
+    )
+
+    date = serializers.DateField(
+        required=False,
+        input_formats=([settings.RU_DATE_FORMAT, '']))
+
+class CancellationViewSet(viewsets.ModelViewSet):
+    queryset = hm.Cancellation.objects.all()
+    serializer_class = CancellationSerializer
+
+
+# Routers provide an easy way of automatically determining the URL conf.
+router.register(r'cancellations', CancellationViewSet)
+
+
 class EventSerializer(serializers.ModelSerializer):
 
     class Meta:

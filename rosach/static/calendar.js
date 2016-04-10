@@ -1,53 +1,82 @@
 
+function doFillCalendar(data, cdata) {
+  var cancellations = {};
+  $.each(cdata, function(i, item) {
+    if (!(item.event in cancellations)) {
+      cancellations[item.event] = {}
+    }
+    cancellations[item.event][item.date] = true;
+  });
+  // console.log(cancellations);
+
+  var events = [];
+  $.each(data, function(i, event) {
+    var begin;
+    var end;
+
+    if (event.repeat == "WEEKDAY" && event.end_repeat) {
+      end = moment(event.end_repeat);
+    } else {
+      end = moment(event.start_date);
+    }
+
+    var current = moment(event.start_date);
+    var current_end = moment(event.end_date);
+    current.locale(dateLang);
+    current_end.locale(dateLang);
+    end.locale(dateLang);
+
+
+    while(moment(current).startOf('day').unix() <= moment(end).startOf('day').unix()) {
+      var place = libraryId;
+      if (event.categories.length != 0 && event.categories[0] == hallId) {
+        place = hallId;
+      }
+
+      var rawCurrentDay = moment(current).startOf('day').format(rawDateFormat);
+      if (!(event.id in cancellations) || !(rawCurrentDay in cancellations[event.id])) {
+        events.push(
+          {'id': event.id,
+           'title': event.title,
+           'description': event.description,
+           'start': current.format(),
+           'end': current_end.format(),
+           'source_start': event.start_date,
+           'source_end': event.end_date,
+           'repeat': event.repeat,
+           'end_repeat': event.end_repeat,
+           'created_by': event.created_by,
+           'place': place,
+          }
+        );
+      }
+
+      current.add(7, 'day');
+      current_end.add(7, 'day');
+    }
+  });
+
+  $('#calendar').fullCalendar('removeEvents');
+  $('#calendar').fullCalendar('addEventSource', events);
+  $('#calendar').fullCalendar('refetchEvents');
+}
+
 function refillCalendar() {
-    $.get(events_url).then(function(data){
-        var events = [];
-        $.each(data, function(i, event) {
-            var begin;
-            var end;
+  var cancellationsData = false;
+  var eventsData = false;
 
-            if (event.repeat == "WEEKDAY" && event.end_repeat) {
-                end = moment(event.end_repeat);
-            } else {
-                end = moment(event.start_date);
-            }
-
-            var current = moment(event.start_date);
-            var current_end = moment(event.end_date);
-            current.locale(dateLang);
-            current_end.locale(dateLang);
-            end.locale(dateLang);
-
-            while(moment(current).startOf('day').unix() <= moment(end).startOf('day').unix()) {
-                var place = libraryId;
-                if (event.categories.length != 0 && event.categories[0] == hallId) {
-                    place = hallId;
-                }
-
-                events.push(
-                    {'id': event.id,
-                     'title': event.title,
-                     'description': event.description,
-                     'start': current.format(),
-                     'end': current_end.format(),
-                     'source_start': event.start_date,
-                     'source_end': event.end_date,
-                     'repeat': event.repeat,
-                     'end_repeat': event.end_repeat,
-                     'created_by': event.created_by,
-                     'place': place,
-                    }
-                );
-
-                current.add(7, 'day');
-                current_end.add(7, 'day');
-            }
-        });
-
-        $('#calendar').fullCalendar('removeEvents');
-        $('#calendar').fullCalendar('addEventSource', events);
-        $('#calendar').fullCalendar('refetchEvents');
-    });
+  $.get(cancellations_url).then(function(cdata){
+    cancellationsData = cdata;
+    if (eventsData) {
+      doFillCalendar(eventsData, cancellationsData)
+    }
+  });
+  $.get(events_url).then(function(data){
+    eventsData = data;
+    if (cancellationsData) {
+      doFillCalendar(eventsData, cancellationsData)
+    }
+  });
 }
 
 
@@ -96,9 +125,11 @@ $(document).ready(function() {
             eventStartEditable: false,
             header: {
                 left: 'title, prev, next',
-                center: '',
-                right: 'today, buttonAdd'
-                //right: 'month,agendaWeek,agendaDay'
+                // center: '',
+                //right: 'today, buttonAdd'
+
+              center: 'today,buttonAdd',
+              right: 'month,agendaWeek,agendaDay'
             },
             timezone: 'Europe/Moscow',
             timeFormat: 'H:mm',
@@ -122,6 +153,10 @@ $(document).ready(function() {
             eventAfterRender: function (event, element, view) {
                 if (event.place == libraryId) {
                     element.css('background-color', "#cfdcdc");
+                    element.css('border-color', "#ffffff");
+                } else {
+                    element.css('background-color', "#e7e7e7");
+                    element.css('border-color', "#ffffff");
                 }
             },
             eventRender: function(event, element) {
@@ -149,7 +184,7 @@ $(document).ready(function() {
 
                 cleanupEventForm();
                 $('#event-edit-modal input[name=id]').val(event.id);
-                $('#event-edit-modal input[name=created_by').val(event.created_by);
+                $('#event-edit-modal input[name=created_by]').val(event.created_by);
                 $('#event-edit-modal input[name=title]').val(event.title);
                 $('#event-edit-modal textarea[name=description]').val(event.description);
                 $('#event-edit-modal input[name=start_date]').val(formatOrEmpty(event.source_start));
@@ -232,7 +267,7 @@ $(document).ready(function() {
     $("#event-edit-modal input").focus(input_remove_error);
     $("#event-edit-modal input").change(input_remove_error);
 
-    $("#event-edit-modal .delete-button").click(function() {
+    $("#event-edit-modal .cancel-button").click(function() {
         $('#send-email-modal div[role=alert]').hide();
         $('#email-subject').val(
             'Событие "' + $('#event-edit-modal input[name=title]').val() +
@@ -241,8 +276,8 @@ $(document).ready(function() {
         $('#send-email-modal input[name=event-id]').val($('#event-edit-modal input[name=id]').val());
 
 
-        $("#send-email-modal .just-delete-button").show();
-        $("#send-email-modal .delete-and-send-button").show();
+        $("#send-email-modal .just-cancel-button").show();
+        $("#send-email-modal .cancel-and-send-button").show();
         $("#send-email-modal .send-button").hide();
 
         $("#event-edit-modal").modal('hide');
@@ -265,8 +300,8 @@ $(document).ready(function() {
         );
         $('#send-email-modal input[name=event-id]').val($('#event-edit-modal input[name=id]').val());
 
-        $("#send-email-modal .just-delete-button").hide();
-        $("#send-email-modal .delete-and-send-button").hide();
+        $("#send-email-modal .just-cancel-button").hide();
+        $("#send-email-modal .cancel-and-send-button").hide();
         $("#send-email-modal .send-button").show();
         $("#event-edit-modal").modal('hide');
         $("#send-email-modal").modal('show');

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    function deleteDevent(eventId) {
+    function cancelEvent(eventId) {
         $.ajax({
             url: event_url + eventId,
             type: 'DELETE',
@@ -14,18 +14,18 @@ $(document).ready(function() {
         $("#send-email-modal").modal('hide');
     }
 
-    $("#send-email-modal .just-delete-button").click(function(){
+    $("#send-email-modal .just-cancel-button").click(function(){
         var id = $('#send-email-modal input[name=event-id]').val();
-        if (confirm('Вы уверены, что хотите удалить событие никого не оповестив?')) {
+        if (confirm('Вы уверены, что хотите отменить событие никого не оповестив?')) {
             deleteDevent(id);
         }
     });
 
-    function sendEmail(deleteIt) {
+    function sendEmail(cancelIt) {
         var id = $('#send-email-modal input[name=event-id]').val();
         var form = $('#send-email-modal').find('form');
 
-        $('.summernote').each( function() {
+        $('.summernote').each(function() {
             $(this).val($(this).code());
         });
 
@@ -35,8 +35,8 @@ $(document).ready(function() {
             data: form.serialize(),
             dataType: 'json',
             success: function(data) {
-                if (deleteIt) {
-                    deleteDevent(id);
+                if (cancelIt) {
+                    cancelEvent(id);
                 } else {
                     $("#send-email-modal").modal('hide');
                 }
@@ -52,7 +52,7 @@ $(document).ready(function() {
         sendEmail(false);
     });
 
-    $("#send-email-modal .delete-and-send-button").click(function() {
+    $("#send-email-modal .cancel-and-send-button").click(function() {
         sendEmail(true);
     });
 

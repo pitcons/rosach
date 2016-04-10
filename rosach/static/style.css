@@ -401,19 +401,27 @@ body {
   display: table;
 }
 
-div.lib-event {
-  background: #cfdcdc;
-}
-div.hall-event {
-  border-bottom: 1px solid #cfdcdc;
-}
 
 div.lib-event,
 div.hall-event {
   font-size: 12px;
   font-family: Open Sans;
   color: #162b29;
-  margin-left: 20px;
+  margin: 0px 0px 2px 20px;
+  padding: 0px 2px 0px 2px;
+  border-radius: 3px;
+  border: 1px solid;
+}
+
+
+div.lib-event {
+  background: #cfdcdc;
+  border-color: #cfdcdc;
+}
+
+div.hall-event {
+  background: #e7e7e7;
+  border-color: #e7e7e7;
 }
 
 .post-detail h1,
@@ -465,12 +473,15 @@ div.hall-event {
   margin-top: 50px;
 }
 
+
+
 #calendar h2 {
   font-size: 36px;
   font-weight: 500;
   padding-left: 15px;
-  width: 300px;
+  /* width: 300px; */
   text-align: left;
+  padding-right: 15px;
 }
 
 #calendar .fc-icon {
@@ -491,20 +502,28 @@ div.hall-event {
 
 #calendar .fc-icon-right-single-arrow:after {
   content: ">";
+
+}
+
+#calendar .fc-prev-button:hover,
+#calendar .fc-next-button:hover {
+  text-decoration: none;
 }
 
 #calendar .fc-time {
   font-weight: normal;
 }
 
+
 #calendar .fc-event {
   background: none;
   color: #162b29;
   font-size: 12px;
   font-family: Open Sans;
-  border: 0px;
-  border-bottom: 1px solid #a1b4b4;
-  border-radius: 0px;
+  line-height: 1.5em;
+  /* border: 0px; */
+  /* border-bottom: 1px solid #a1b4b4; */
+  /* border-radius: 0px; */
   margin: 0px;
   padding: 0px;
 }
@@ -517,11 +536,11 @@ div.hall-event {
   border-style: none;
   color: #a1b4b4;
   text-transform: uppercase;
-
+/*  border-bottom: 1px solid #a1b4b4; */
 }
 
 #calendar div.fc-content-skeleton table thead tr {
-  border-bottom: 1px solid #a1b4b4;
+  border-top: 1px solid #a1b4b4;
 }
 
 #calendar table  tr td {
@@ -549,16 +568,34 @@ div.hall-event {
   background-color: #f1f4f4;
 }
 
+
 #calendar button {
   background: none;
   border: none;
   outline:none;
-  color: #cfdcdc;
+  /* color: #cfdcdc; */
   box-shadow: none;
   font-size: 22px;
   font-family: Open Sans;
 }
 
+
+#calendar button:hover {
+  text-decoration: underline;
+}
+
+#calendar button.fc-state-active:hover,
+#calendar button.fc-state-active {
+  color: #a1b4b4;
+  text-decoration: none;
+  cursor: auto;
+}
+
+
+
+#calendar .fc-month-button,
+#calendar .fc-agendaWeek-button,
+#calendar .fc-agendaDay-button,
 #calendar button.fc-today-button,
 #calendar button.fc-buttonAdd-button {
   color: black;
