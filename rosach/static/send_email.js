@@ -17,7 +17,7 @@ $(document).ready(function() {
     $("#send-email-modal .just-cancel-button").click(function(){
         var id = $('#send-email-modal input[name=event-id]').val();
         if (confirm('Вы уверены, что хотите отменить событие никого не оповестив?')) {
-            deleteDevent(id);
+            cancelEvent(id);
         }
     });
 

@@ -7,6 +7,14 @@ body {
   overflow-y: scroll;
 }
 
+a {
+  color: #24a5a5;
+}
+
+a:hover {
+  color: #168181;
+}
+
 
 .row-no-padding > [class*="col-"] {
   padding-left: 0;
@@ -425,25 +433,29 @@ div.hall-event {
 }
 
 .post-detail h1,
-#about h1 {
+#about h1,
+#details h1 {
   font-family: Roboto;
   font-weight: 500;
 }
 
 .post-detail,
-#about {
+#about,
+#details {
   padding-top: 103px;
   padding-left: 35px;
 }
 
 .post-detail .blog-content,
-#about .content {
+#about .content,
+#details .content {
   margin-top: 63px;
   font-weight: 300;
 }
 
 
-#about .text {
+#about .text,
+#details .text {
   background-image: url('/static/images/odk_bg.png');
   background-repeat:no-repeat;
   background-size:contain;
@@ -452,18 +464,21 @@ div.hall-event {
 
 
 .post-detail .blog-content,
-#about .text {
+#about .text,
+#details .text {
   font-family: Open Sans;
   line-height: 1.7em;
   padding-bottom: 20px;
 }
 
 .post-detail .blog-content p,
-#about .text p {
+#about .text p,
+#details .text p {
   padding-bottom: 15px;
 }
 
-#about .filer_image {
+#about .filer_image,
+#details .filer_image {
   max-width: 100%;
   height: auto;
   display:block;
