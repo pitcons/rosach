@@ -352,7 +352,7 @@ a:hover {
   list-style-type: none;
 }
 
-.club-dark a,
+.club-dark .club-text a,
 .club-dark {
   color: #bbbbbb;
   background: #172b2a;
