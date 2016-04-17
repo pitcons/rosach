@@ -18,6 +18,7 @@
 
     <meta property="og:title" content="{% block og_title %}{% trans "Rosa's House of Culture" %}{% endblock %}" />
     <meta property="og:type" content="{% block og_type %}website{% endblock %}" />
+    <meta property="og:description" content="{% block og_description %}{% if LANGUAGE_CODE == 'ru' %}ДК РОЗЫ (Дом Культуры Розы) – инициатива коллектива Что Делать направленная на создание и исследования процессов, в которых современное критическое и левое искусство формирует свою новую вовлеченную аудиторию.{% else %}Rosa’s House of Culture (ДК РОЗЫ ­ Дом Культуры Розы) – is an initiative of collective Chto Delat.{% endif %}{% endblock %}" />
     <meta property="og:image" content="{% block og_image %}http://dkrosa.org/static/images/logo.png{% endblock %}" />
 
     {% render_block "css" %}
