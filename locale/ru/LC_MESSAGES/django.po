@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-30 14:17+0300\n"
+"POT-Creation-Date: 2016-04-19 22:29+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,11 +25,11 @@ msgstr "Меню"
 msgid "Blog"
 msgstr "Блог"
 
-#: rosach/rest.py:106
+#: rosach/rest.py:132
 msgid "Already subscribed"
 msgstr "Email уже подписан"
 
-#: rosach/rest.py:130
+#: rosach/rest.py:156
 msgid "That subject is alredy sended"
 msgstr "Письмо с данной темой уже отправлялось."
 
@@ -41,23 +41,27 @@ msgstr "ru"
 msgid "en"
 msgstr "en"
 
-#: rosach/settings.py:229
+#: rosach/settings.py:230
 msgid "Blog Content"
 msgstr "Содержимое блога"
 
-#: rosach/templates/base.html:48
+#: rosach/templates/base.html:7 rosach/templates/base.html.py:19
+msgid "Rosa's House of Culture"
+msgstr ""
+
+#: rosach/templates/base.html:54
 msgid "calendar"
 msgstr "календарь"
 
-#: rosach/templates/base.html:53
+#: rosach/templates/base.html:59
 msgid "archive"
 msgstr "архив"
 
-#: rosach/templates/base.html:58
+#: rosach/templates/base.html:64
 msgid "about"
 msgstr "о дк"
 
-#: rosach/templates/base.html:92
+#: rosach/templates/base.html:98
 msgid "New event"
 msgstr "Новое событие"
 
@@ -65,60 +69,64 @@ msgstr "Новое событие"
 msgid "Event"
 msgstr "Событие"
 
-#: rosach/templates/calendar/event_edit.html:18
+#: rosach/templates/calendar/event_edit.html:19
 msgid "Place"
 msgstr "Место"
 
-#: rosach/templates/calendar/event_edit.html:22
+#: rosach/templates/calendar/event_edit.html:23
 msgid "Library"
 msgstr "Библиотека"
 
-#: rosach/templates/calendar/event_edit.html:23
+#: rosach/templates/calendar/event_edit.html:24
 msgid "Hall"
 msgstr "Зал"
 
-#: rosach/templates/calendar/event_edit.html:30
+#: rosach/templates/calendar/event_edit.html:25
+msgid "Internal"
+msgstr "Внутреннее"
+
+#: rosach/templates/calendar/event_edit.html:32
 msgid "Begin"
 msgstr "Начало"
 
-#: rosach/templates/calendar/event_edit.html:43
+#: rosach/templates/calendar/event_edit.html:45
 msgid "End"
 msgstr "Окончание"
 
-#: rosach/templates/calendar/event_edit.html:56
+#: rosach/templates/calendar/event_edit.html:58
 msgid "Title"
 msgstr "Событие"
 
-#: rosach/templates/calendar/event_edit.html:64
+#: rosach/templates/calendar/event_edit.html:66
 msgid "Description"
 msgstr "Описание"
 
-#: rosach/templates/calendar/event_edit.html:72
+#: rosach/templates/calendar/event_edit.html:74
 msgid "Repeat"
 msgstr "Повтор"
 
-#: rosach/templates/calendar/event_edit.html:76
+#: rosach/templates/calendar/event_edit.html:78
 msgid "no"
 msgstr "Никогда"
 
-#: rosach/templates/calendar/event_edit.html:77
+#: rosach/templates/calendar/event_edit.html:79
 msgid "every week"
 msgstr "Каждую неделю"
 
-#: rosach/templates/calendar/event_edit.html:83
+#: rosach/templates/calendar/event_edit.html:85
 msgid "End repeat"
 msgstr "Последний день повтора"
 
-#: rosach/templates/calendar/event_edit.html:100
-msgid "Delete"
-msgstr "Удалить"
-
 #: rosach/templates/calendar/event_edit.html:102
-#: rosach/templates/calendar/send_email.html:29
+msgid "Cancel event"
+msgstr "Отменить событие"
+
+#: rosach/templates/calendar/event_edit.html:104
+#: rosach/templates/calendar/send_email.html:30
 msgid "Close"
 msgstr "Закрыть"
 
-#: rosach/templates/calendar/event_edit.html:103
+#: rosach/templates/calendar/event_edit.html:105
 msgid "Save changes"
 msgstr "Сохранить"
 
@@ -136,23 +144,23 @@ msgstr "E-mail"
 msgid "Send notification email"
 msgstr "Отправка email"
 
-#: rosach/templates/calendar/send_email.html:17
+#: rosach/templates/calendar/send_email.html:18
 msgid "Subject:"
 msgstr "Тема:"
 
-#: rosach/templates/calendar/send_email.html:22
+#: rosach/templates/calendar/send_email.html:23
 msgid "Email text:"
 msgstr "Текст email:"
 
-#: rosach/templates/calendar/send_email.html:27
-msgid "Just delete"
-msgstr "Просто удалить"
-
-#: rosach/templates/calendar/send_email.html:30
-msgid "Delete and send"
-msgstr "Отправить и удалить"
+#: rosach/templates/calendar/send_email.html:28
+msgid "Just cancel event"
+msgstr "Просто отменить событие"
 
 #: rosach/templates/calendar/send_email.html:31
+msgid "Cancel and send"
+msgstr "Отправить и отменить событие"
+
+#: rosach/templates/calendar/send_email.html:32
 msgid "Send"
 msgstr "Отправить"
 
@@ -200,11 +208,11 @@ msgstr ""
 msgid "next"
 msgstr ""
 
-#: rosach/templates/newsletter/message/message.html:20
+#: rosach/templates/newsletter/message/message.html:16
 msgid "Read more"
 msgstr ""
 
-#: rosach/templates/newsletter/message/message.html:25
+#: rosach/templates/newsletter/message/message.html:22
 #, fuzzy
 #| msgid "Unsubscribe:"
 msgid "Unsubscribe"
@@ -213,6 +221,9 @@ msgstr "Отписаться:"
 #: rosach/templates/newsletter/message/message.txt:8
 msgid "Unsubscribe:"
 msgstr "Отписаться:"
+
+#~ msgid "Delete"
+#~ msgstr "Удалить"
 
 #~ msgid "blog"
 #~ msgstr "блог"

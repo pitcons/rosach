@@ -19,6 +19,13 @@
         <div class="hall-event">Событие в зале</div>
       </td>
     </tr>
+    {% if request.user.is_authenticated %}
+    <tr>
+      <td>
+        <div class="internal-event">Внутреннее событие</div>
+      </td>
+    </tr>
+    {% endif %}
     </table>
   </div>
 

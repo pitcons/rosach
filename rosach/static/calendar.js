@@ -29,8 +29,13 @@ function doFillCalendar(data, cdata) {
 
     while(moment(current).startOf('day').unix() <= moment(end).startOf('day').unix()) {
       var place = libraryId;
-      if (event.categories.length != 0 && event.categories[0] == hallId) {
-        place = hallId;
+      if (event.categories.length != 0) {
+        if (event.categories[0] == hallId) {
+          place = hallId;
+        }
+        if (event.categories[0] == internalId) {
+          place = internalId;
+        }
       }
 
       var rawCurrentDay = moment(current).startOf('day').format(rawDateFormat);
@@ -86,12 +91,16 @@ $(document).ready(function() {
     var btnWeekRepeat = $('#event-edit-modal button[name=week-repeat]');
     var btnLibraryPlace = $('#event-edit-modal button[name=library-place]');
     var btnHallPlace = $('#event-edit-modal button[name=hall-place]');
+    var btnInternalPlace = $('#event-edit-modal button[name=internal-place]');
 
     function cleanupEventForm() {
         var form = $('#event-edit-modal').find('form');
         form.find('.form-group').removeClass('has-error');
         form.find('.help-block').html('');
         form.find("input[type=text], input[name=id], textarea").val("");
+        form.find('.cancel-day').html('');
+        form.find('.cancel-button').hide();
+        $("#event-edit-modal .cancel-button").hide();
         btnNoRepeat.click();
         btnHallPlace.click();
     }
@@ -154,8 +163,11 @@ $(document).ready(function() {
                 if (event.place == libraryId) {
                     element.css('background-color', "#cfdcdc");
                     element.css('border-color', "#ffffff");
-                } else {
+                } else if (event.place == hallId) {
                     element.css('background-color', "#e7e7e7");
+                    element.css('border-color', "#ffffff");
+                } else {
+                    element.css('background-color', "#b0b0b0");
                     element.css('border-color', "#ffffff");
                 }
             },
@@ -174,15 +186,12 @@ $(document).ready(function() {
                     style: 'qtip-light'
                 });
             },
-            // dayClick: function(event, jsEvent, view) {
-            // },
             eventClick: function(event, jsEvent, view) {
                 if ($('#user_login').html() == 'AnonymousUser') {
                   return False;
-                    //window.location = '/ru/admin/login/?next=/ru/calendar/';
                 }
-
                 cleanupEventForm();
+                $('#event-edit-modal input[name=current_day]').val(event.start.format(dateFormat));
                 $('#event-edit-modal input[name=id]').val(event.id);
                 $('#event-edit-modal input[name=created_by]').val(event.created_by);
                 $('#event-edit-modal input[name=title]').val(event.title);
@@ -191,6 +200,8 @@ $(document).ready(function() {
                 $('#event-edit-modal input[name=end_date]').val(formatOrEmpty(event.source_end));
                 $('#event-edit-modal input[name=end_repeat]').val(dateFormatOrEmpty(event.end_repeat));
                 $('#event-edit-modal input[name=repeat]').val(event.repeat);
+                $('#event-edit-modal .cancel-day').html(event.start.format(dateFormat));
+                $('#event-edit-modal .cancel-button').show();
                 if (event.repeat == "WEEKDAY") {
                     btnWeekRepeat.addClass('active');
                     btnNoRepeat.removeClass('active');
@@ -202,8 +213,10 @@ $(document).ready(function() {
                 }
                 if (event.place == libraryId) {
                     btnLibraryPlace.click();
-                } else {
+                } else if (event.place == hallId) {
                     btnHallPlace.click();
+                } else {
+                    btnInternalPlace.click();
                 }
                 $('#event-edit-modal').modal('show');
             }
@@ -213,16 +226,22 @@ $(document).ready(function() {
 
 
     btnHallPlace.click(function() {
-        btnHallPlace.addClass('active');
+        btnInternalPlace.removeClass('active');
         btnLibraryPlace.removeClass('active');
+        btnHallPlace.addClass('active');
         $('#event-edit-modal input[name=categories]').val(hallId);
-        // $('#event-edit-modal input[name=repeat]').val('NEVER');
     });
     btnLibraryPlace.click(function() {
         btnHallPlace.removeClass('active');
+        btnInternalPlace.removeClass('active');
         btnLibraryPlace.addClass('active');
         $('#event-edit-modal input[name=categories]').val(libraryId);
-        // $('#event-edit-modal input[name=repeat]').val('WEEKDAY');
+    });
+    btnInternalPlace.click(function() {
+        btnHallPlace.removeClass('active');
+        btnLibraryPlace.removeClass('active');
+        btnInternalPlace.addClass('active');
+        $('#event-edit-modal input[name=categories]').val(internalId);
     });
 
     btnNoRepeat.click(function() {
@@ -271,10 +290,10 @@ $(document).ready(function() {
         $('#send-email-modal div[role=alert]').hide();
         $('#email-subject').val(
             'Событие "' + $('#event-edit-modal input[name=title]').val() +
-                '" не состоится ' + $('#event-edit-modal input[name=start_date]').val().split(' ')[0]);
+                '" не состоится ' + $('#event-edit-modal input[name=current_day]').val().split(' ')[0]);
         $('#email-message').summernote('code', 'Здравствуйте!<br /><br />Событие отменяется.');
         $('#send-email-modal input[name=event-id]').val($('#event-edit-modal input[name=id]').val());
-
+        $('#send-email-modal input[name=current_day]').val($('#event-edit-modal input[name=current_day]').val());
 
         $("#send-email-modal .just-cancel-button").show();
         $("#send-email-modal .cancel-and-send-button").show();

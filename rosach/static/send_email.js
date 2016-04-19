@@ -1,9 +1,13 @@
 $(document).ready(function() {
-    function cancelEvent(eventId) {
+    function cancelEvent(eventId, date) {
         $.ajax({
-            url: event_url + eventId,
-            type: 'DELETE',
+            url: cancellations_url,
+            type: 'POST',
             dataType: 'json',
+            data: {
+                event: eventId,
+                date: date
+            },
             success: function(data) {
                 refillCalendar();
             },
@@ -16,14 +20,16 @@ $(document).ready(function() {
 
     $("#send-email-modal .just-cancel-button").click(function(){
         var id = $('#send-email-modal input[name=event-id]').val();
+        var day = $('#send-email-modal input[name=current_day]').val();
         if (confirm('Вы уверены, что хотите отменить событие никого не оповестив?')) {
-            cancelEvent(id);
+            cancelEvent(id, day);
         }
     });
 
     function sendEmail(cancelIt) {
         var id = $('#send-email-modal input[name=event-id]').val();
         var form = $('#send-email-modal').find('form');
+        var day = $('#send-email-modal input[name=current_day]').val();
 
         $('.summernote').each(function() {
             $(this).val($(this).code());
@@ -36,7 +42,7 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(data) {
                 if (cancelIt) {
-                    cancelEvent(id);
+                    cancelEvent(id, day);
                 } else {
                     $("#send-email-modal").modal('hide');
                 }
