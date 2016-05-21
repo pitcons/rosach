@@ -29,7 +29,7 @@ SECRET_KEY = 'ikqkf%d#zh3av=%u=5qsqm-a+&^b6rd+2!h(872plp3e%32z=$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -220,7 +220,8 @@ CMS_TEMPLATES = (
     ('feature.html', 'Page with Feature'),
     ('main.html', 'Main page'),
     ('about.html', 'About page'),
-    ('details.html', 'Details page')
+    ('details.html', 'Details page'),
+    ('announcements.html', 'Announcements page'),
 )
 
 CMS_PERMISSION = True
