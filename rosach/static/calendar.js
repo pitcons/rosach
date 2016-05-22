@@ -347,7 +347,7 @@ $(document).ready(function() {
                 var formData = new FormData();
                 var inputImage = form.find('input[type=file]')
 
-                if (inputImage[0].length > 0) {
+                if (inputImage[0].files.length > 0) {
                     formData.append('image', inputImage[0].files[0]);
                     formData.append('event_id', data.id);
 
