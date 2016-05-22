@@ -41,3 +41,4 @@ django-taggit-templatetags==0.2.5
 django-meta==0.3.2
 django-meta-mixin==0.2.1
 djangocms-blog==0.6.3
+django-ajaximage==0.2.8

@@ -11,6 +11,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 admin.autodiscover()
 
 from .rest import *
+from rosa_app import views
 
 urlpatterns = i18n_patterns('',
     url(r'^admin/', include(admin.site.urls)),
@@ -24,6 +25,9 @@ urlpatterns = i18n_patterns('',
     url(r'^api/send_message/$', SendMessage.as_view()),
     url(r'^api/subscriptions/$', Subscription.as_view()),
     url(r'^api/', include(router.urls)),
+#    url(r'^event-image$', EventImageUploadView.as_view()),
+#    url(r'^event-image$', EventImageView.as_view()),
+    url(r'^event-image$', views.upload_event_image),
 
     url(r'^', include('cms.urls')),
 )

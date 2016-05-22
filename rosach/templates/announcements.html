@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load cms_tags i18n happenings_tags %}
+
+{% block title %}{% trans 'Announcements' %}{% endblock title %}
+
+{% block content %}
+
+
+{% upcoming_events finish=60 num=8 %}
+
+
+
+{% endblock %}

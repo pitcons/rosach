@@ -50,6 +50,12 @@
               <ul>
                 {% page_attribute "slug" request.current_page as current_slug %}
                 <li>
+                  <div class="link-box {% if current_slug == 'announcements' %}link-box-active{% endif %}">
+                    <a href="/{{ request.LANGUAGE_CODE }}/announcements">{% trans 'announcements' %}</a>
+                  </div>
+                </li>
+
+                <li>
                   <div class="link-box {% if current_slug == 'calendar' %}link-box-active{% endif %}">
                     <a href="/{{ request.LANGUAGE_CODE }}/calendar/">{% trans 'calendar' %}</a>
                   </div>

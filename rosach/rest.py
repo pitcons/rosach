@@ -10,6 +10,7 @@ from django.db import IntegrityError
 from unidecode import unidecode
 import happenings.models as hm
 import newsletter.models as nm
+import rosa_app.models as rm
 from django.utils.translation import ugettext as _
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authentication import SessionAuthentication
@@ -17,6 +18,8 @@ from rest_framework import routers, serializers, viewsets
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.parsers import FileUploadParser
+from rest_framework.generics import RetrieveUpdateAPIView
 
 
 router = routers.DefaultRouter()
@@ -171,3 +174,34 @@ class SendMessage(APIView):
         submission.save()
 
         return Response({}, status=status.HTTP_201_CREATED)
+
+
+class EventImageUploadView(APIView):
+    permission_classes = [AllowAny, ]
+    parser_classes = (FileUploadParser, )
+    # permission_classes = [IsAuthenticated, ]
+
+    def post(self, request, format='jpg'):
+        print "HERE 1", request.FILES
+        print "HERE 2", request.data
+        print "HERE 3", request.POST
+
+        # up_file = request.FILES['file']
+        # # destination = open('/home/petr/tmp/___' + up_file.name, 'wb+')
+        # # for chunk in up_file.chunks():
+        # #     destination.write(chunk)
+        # # destination.close()
+
+        return Response({}, status=status.HTTP_201_CREATED)
+
+
+class EventImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = rm.EventImage
+        fields = ('image', 'event')
+
+
+class EventImageView(RetrieveUpdateAPIView):
+    model = rm.EventImage
+    serializer_class = EventImageSerializer
+    permission_classes = (IsAuthenticated, )

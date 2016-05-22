@@ -97,21 +97,21 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
-    'django.contrib.messages.context_processors.messages',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.request',
-    'django.core.context_processors.media',
-    'django.core.context_processors.csrf',
-    'django.core.context_processors.tz',
-    'sekizai.context_processors.sekizai',
-    'django.core.context_processors.static',
-    'cms.context_processors.cms_settings'
+                'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.i18n',
+                'django.core.context_processors.debug',
+                'django.core.context_processors.request',
+                'django.core.context_processors.media',
+                'django.core.context_processors.csrf',
+                'django.core.context_processors.tz',
+                'sekizai.context_processors.sekizai',
+                'django.core.context_processors.static',
+                'cms.context_processors.cms_settings'
             ],
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-    'django.template.loaders.eggs.Loader'
+                'django.template.loaders.app_directories.Loader',
+                'django.template.loaders.eggs.Loader'
             ],
         },
     },
@@ -162,6 +162,7 @@ INSTALLED_APPS = (
     'djangocms_video',
     'reversion',
     'rosach',
+    'rosa_app',
     'rest_framework',
     'newsletter',
 #    'sorl.thumbnail',
@@ -181,7 +182,11 @@ INSTALLED_APPS = (
     'meta',
     'meta_mixin',
     'djangocms_blog',
+    'ajaximage',
+
 )
+
+AJAXIMAGE_AUTH_TEST = lambda u: True
 
 LANGUAGES = (
     ## Customize this

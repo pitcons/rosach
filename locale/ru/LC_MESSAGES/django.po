@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-19 22:29+0300\n"
+"POT-Creation-Date: 2016-05-22 23:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,43 +25,51 @@ msgstr "Меню"
 msgid "Blog"
 msgstr "Блог"
 
-#: rosach/rest.py:132
+#: rosach/rest.py:140
 msgid "Already subscribed"
 msgstr "Email уже подписан"
 
-#: rosach/rest.py:156
+#: rosach/rest.py:164
 msgid "That subject is alredy sended"
 msgstr "Письмо с данной темой уже отправлялось."
 
-#: rosach/settings.py:188 rosach/settings.py:204
+#: rosach/settings.py:193 rosach/settings.py:209
 msgid "ru"
 msgstr "ru"
 
-#: rosach/settings.py:189 rosach/settings.py:211
+#: rosach/settings.py:194 rosach/settings.py:216
 msgid "en"
 msgstr "en"
 
-#: rosach/settings.py:230
+#: rosach/settings.py:236
 msgid "Blog Content"
 msgstr "Содержимое блога"
+
+#: rosach/templates/announcements.html:4
+msgid "Announcements"
+msgstr "Анонсы"
 
 #: rosach/templates/base.html:7 rosach/templates/base.html.py:19
 msgid "Rosa's House of Culture"
 msgstr ""
 
 #: rosach/templates/base.html:54
+msgid "announcements"
+msgstr "анонсы"
+
+#: rosach/templates/base.html:60
 msgid "calendar"
 msgstr "календарь"
 
-#: rosach/templates/base.html:59
+#: rosach/templates/base.html:65
 msgid "archive"
 msgstr "архив"
 
-#: rosach/templates/base.html:64
+#: rosach/templates/base.html:70
 msgid "about"
 msgstr "о дк"
 
-#: rosach/templates/base.html:98
+#: rosach/templates/base.html:104
 msgid "New event"
 msgstr "Новое событие"
 
@@ -94,47 +102,51 @@ msgid "End"
 msgstr "Окончание"
 
 #: rosach/templates/calendar/event_edit.html:58
+msgid "Image"
+msgstr ""
+
+#: rosach/templates/calendar/event_edit.html:69
 msgid "Title"
 msgstr "Событие"
 
-#: rosach/templates/calendar/event_edit.html:66
+#: rosach/templates/calendar/event_edit.html:77
 msgid "Description"
 msgstr "Описание"
 
-#: rosach/templates/calendar/event_edit.html:74
+#: rosach/templates/calendar/event_edit.html:85
 msgid "Repeat"
 msgstr "Повтор"
 
-#: rosach/templates/calendar/event_edit.html:78
+#: rosach/templates/calendar/event_edit.html:89
 msgid "no"
 msgstr "Никогда"
 
-#: rosach/templates/calendar/event_edit.html:79
+#: rosach/templates/calendar/event_edit.html:90
 msgid "every week"
 msgstr "Каждую неделю"
 
-#: rosach/templates/calendar/event_edit.html:85
+#: rosach/templates/calendar/event_edit.html:96
 msgid "End repeat"
 msgstr "Последний день повтора"
 
-#: rosach/templates/calendar/event_edit.html:102
+#: rosach/templates/calendar/event_edit.html:113
 msgid "Cancel event"
 msgstr "Отменить событие"
 
-#: rosach/templates/calendar/event_edit.html:104
+#: rosach/templates/calendar/event_edit.html:115
 #: rosach/templates/calendar/send_email.html:30
 msgid "Close"
 msgstr "Закрыть"
 
-#: rosach/templates/calendar/event_edit.html:105
+#: rosach/templates/calendar/event_edit.html:116
 msgid "Save changes"
 msgstr "Сохранить"
 
-#: rosach/templates/calendar/main.html:30
+#: rosach/templates/calendar/main.html:37
 msgid "subscribe"
 msgstr "подписаться"
 
-#: rosach/templates/calendar/main.html:35
+#: rosach/templates/calendar/main.html:42
 #, fuzzy
 #| msgid "E-mail"
 msgid "e-mail"
@@ -207,6 +219,168 @@ msgstr ""
 #: rosach/templates/djangocms_blog/post_list.html:104
 msgid "next"
 msgstr ""
+
+#: rosach/templates/happenings/event_day_list.html:11
+#, fuzzy
+#| msgid "calendar"
+msgid "Back to calendar"
+msgstr "календарь"
+
+#: rosach/templates/happenings/event_day_list.html:15
+#, fuzzy
+#| msgid "Event"
+msgid "Events"
+msgstr "Событие"
+
+#: rosach/templates/happenings/event_day_list.html:17
+#, python-format
+msgid ""
+"\n"
+"            in category <span id=\"cal-day-category\">%(c)s</span>\n"
+"            with tag <span id=\"cal-day-tag\">%(t)s</span>\n"
+"            "
+msgstr ""
+
+#: rosach/templates/happenings/event_day_list.html:22
+#, python-format
+msgid ""
+"\n"
+"            with category <span id=\"cal-day-category\">%(c)s</span>\n"
+"            "
+msgstr ""
+
+#: rosach/templates/happenings/event_day_list.html:26
+#, python-format
+msgid ""
+"\n"
+"            with tag = <span id=\"cal-day-tag\">%(t)s</span>\n"
+"            "
+msgstr ""
+
+#: rosach/templates/happenings/event_day_list.html:32
+msgid "For"
+msgstr ""
+
+#: rosach/templates/happenings/event_day_list.html:38
+msgid "Prev Day"
+msgstr ""
+
+#: rosach/templates/happenings/event_day_list.html:41
+msgid "Next Day"
+msgstr ""
+
+#: rosach/templates/happenings/event_day_list.html:48
+#: rosach/templates/happenings/partials/upcoming_events.html:82
+msgid "Oops.. No events!"
+msgstr ""
+
+#: rosach/templates/happenings/event_detail.html:9
+#, python-format
+msgid "This is a %(event_duration_days)s day event."
+msgstr ""
+
+#: rosach/templates/happenings/event_detail.html:13
+#, python-format
+msgid "This event repeats %(repeat_lower)s."
+msgstr ""
+
+#: rosach/templates/happenings/event_detail.html:15
+#, fuzzy
+#| msgid "New event"
+msgid "Next event date:"
+msgstr "Новое событие"
+
+#: rosach/templates/happenings/event_detail.html:18
+#: rosach/templates/happenings/event_detail.html:21
+#: rosach/templates/happenings/event_detail.html:31
+#: rosach/templates/happenings/event_detail.html:39
+msgid "(CANCELLED)"
+msgstr ""
+
+#: rosach/templates/happenings/event_detail.html:20
+#, python-format
+msgid "This was an event that repeated %(repeat_lower)s."
+msgstr ""
+
+#: rosach/templates/happenings/event_detail.html:21
+#, python-format
+msgid "The last event was on %(last_event_date)s"
+msgstr ""
+
+#: rosach/templates/happenings/event_detail.html:23
+#: rosach/templates/happenings/partials/calendar/popover.html:3
+msgid "When:"
+msgstr ""
+
+#: rosach/templates/happenings/event_detail.html:28
+#, python-format
+msgid "Day %(num_day)s"
+msgstr ""
+
+#: rosach/templates/happenings/event_detail.html:43
+msgid "today is:"
+msgstr ""
+
+#: rosach/templates/happenings/event_detail.html:46
+msgid "This event has been cancelled on the following day(s):"
+msgstr ""
+
+#: rosach/templates/happenings/event_detail.html:49
+#, python-format
+msgid "Reason: %(reason)s"
+msgstr ""
+
+#: rosach/templates/happenings/event_detail.html:55
+msgid "Location:"
+msgid_plural "Locations:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: rosach/templates/happenings/event_detail.html:71
+msgid "Category:"
+msgid_plural "Categories:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: rosach/templates/happenings/event_detail.html:80
+msgid "Tag:"
+msgid_plural "Tags:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: rosach/templates/happenings/partials/calendar/month_table.html:7
+msgid "Today"
+msgstr ""
+
+#: rosach/templates/happenings/partials/calendar/popover.html:10
+msgid "Where:"
+msgstr ""
+
+#: rosach/templates/happenings/partials/calendar/popover.html:19
+#, fuzzy
+#| msgid "Description"
+msgid "Description:"
+msgstr "Описание"
+
+#: rosach/templates/happenings/partials/calendar/popover.html:28
+msgid "View details"
+msgstr ""
+
+#: rosach/templates/happenings/partials/upcoming_events.html:4
+msgid "Upcoming Events"
+msgstr "Ближайшие события в ДК"
+
+#: rosach/templates/happenings/partials/upcoming_events.html:6
+msgid "upcoming events descr"
+msgstr "В ДК Розы постоянно работают инициативы, а так же проходят разовые события. На данной странице можно найти те, что состоятся в ближайшее время."
+
+#: rosach/templates/happenings/partials/upcoming_events.html:30
+msgid "EVENT CANCELLED"
+msgstr "СОБЫТИЕ ОТМЕНЕНО"
+
+#: rosach/templates/happenings/partials/upcoming_events.html:42
+msgid "Event starts at: "
+msgstr "Начало: "
 
 #: rosach/templates/newsletter/message/message.html:16
 msgid "Read more"

@@ -14,7 +14,7 @@ function doFillCalendar(data, cdata) {
     var begin;
     var end;
 
-    if (event.repeat == "WEEKDAY" && event.end_repeat) {
+    if (event.repeat == "WEEKLY" && event.end_repeat) {
       end = moment(event.end_repeat);
     } else {
       end = moment(event.start_date);
@@ -100,6 +100,7 @@ $(document).ready(function() {
         form.find("input[type=text], input[name=id], textarea").val("");
         form.find('.cancel-day').html('');
         form.find('.cancel-button').hide();
+        form.find('input[name=image]').val('');
         $("#event-edit-modal .cancel-button").hide();
         btnNoRepeat.click();
         btnHallPlace.click();
@@ -202,7 +203,7 @@ $(document).ready(function() {
                 $('#event-edit-modal input[name=repeat]').val(event.repeat);
                 $('#event-edit-modal .cancel-day').html(event.start.format(dateFormat));
                 $('#event-edit-modal .cancel-button').show();
-                if (event.repeat == "WEEKDAY") {
+                if (event.repeat == "WEEKLY") {
                     btnWeekRepeat.addClass('active');
                     btnNoRepeat.removeClass('active');
                     $('#end-repeat-row').show();
@@ -254,7 +255,7 @@ $(document).ready(function() {
         btnNoRepeat.removeClass('active');
         btnWeekRepeat.addClass('active');
         $('#end-repeat-row').show();
-        $('#event-edit-modal input[name=repeat]').val('WEEKDAY');
+        $('#event-edit-modal input[name=repeat]').val('WEEKLY');
     });
 
     $('#start-datetime').datetimepicker({
@@ -330,7 +331,7 @@ $(document).ready(function() {
         var form = $("#event-edit-modal form");
         var id = $('#event-edit-modal input[name=id]').val();
         if (id) {
-            var url = event_url + id;
+            var url = event_url + id + '/';
             var method = 'PUT';
         } else {
             var url = event_url;
@@ -343,6 +344,24 @@ $(document).ready(function() {
             dataType: 'json',
             data: form.serialize(),
             success: function(data) {
+                var formData = new FormData();
+                var inputImage = form.find('input[type=file]')
+
+                if (inputImage[0].length > 0) {
+                    formData.append('image', inputImage[0].files[0]);
+                    formData.append('event_id', data.id);
+
+                    $.ajax({
+                        url: events_img_url,
+                        type: 'POST',
+                        data: formData,
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        method: 'POST'
+                    });
+                }
+
                 showSendOnChange();
                 // $('#event-edit-modal').modal('hide');
                 refillCalendar();
