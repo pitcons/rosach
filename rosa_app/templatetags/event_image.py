@@ -14,4 +14,4 @@ def event_image(event_id):
         thumbnailer = get_thumbnailer(ei.image)
         return thumbnailer.get_thumbnail(thumbnail_options).url
     else:
-        return 'http://dkrosa.org/media/filer_public_thumbnails/filer_public/34/a9/34a9383f-5978-4414-a526-c61aa3e73965/dsc06771.jpg__558x308_q85_crop_subsampling-2.jpg'
+        return '/static/images/event-default.jpg'
