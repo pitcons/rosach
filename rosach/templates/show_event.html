@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% load i18n event_image %}
 
+{% block og_title %}{{ event.title }}{% endblock %}
+{% block og_type %}website{% endblock %}
+{% block og_description %}{{ event.description }}{% endblock %}
+{% block og_image %}http://dkrosa.org{{ event.id|event_image }}{% endblock %}
+
+
 {% block content %}
 <div id="show-event">
   <div class="club">
