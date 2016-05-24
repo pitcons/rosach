@@ -182,16 +182,6 @@ class EventImageUploadView(APIView):
     # permission_classes = [IsAuthenticated, ]
 
     def post(self, request, format='jpg'):
-        print "HERE 1", request.FILES
-        print "HERE 2", request.data
-        print "HERE 3", request.POST
-
-        # up_file = request.FILES['file']
-        # # destination = open('/home/petr/tmp/___' + up_file.name, 'wb+')
-        # # for chunk in up_file.chunks():
-        # #     destination.write(chunk)
-        # # destination.close()
-
         return Response({}, status=status.HTTP_201_CREATED)
 
 

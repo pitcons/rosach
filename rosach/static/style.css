@@ -319,6 +319,10 @@ a:hover {
   padding-bottom: 30px;
 }
 
+.club-soc {
+    padding-right: 25px;
+}
+
 .club .blog-continue-link:hover {
   cursor: pointer;
 }
@@ -689,4 +693,9 @@ div.internal-event {
   text-decoration: none;
   color: white;
   cursor: pointer;
+}
+
+#show-event {
+  padding-top: 26px;
+  padding-left: 35px;
 }

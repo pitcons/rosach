@@ -6,6 +6,7 @@ from rosa_app import models
 
 register = template.Library()
 
+
 @register.filter
 def event_image(event_id):
     ei = models.EventImage.objects.filter(event_id=event_id).first()

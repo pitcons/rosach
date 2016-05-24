@@ -29,6 +29,8 @@ urlpatterns = i18n_patterns('',
 #    url(r'^event-image$', EventImageView.as_view()),
     url(r'^event-image$', views.upload_event_image),
 
+    url(r'^show-event/(?P<when>.+)/(?P<event_id>[0-9]+)/?$', views.show_event),
+
     url(r'^', include('cms.urls')),
 )
 

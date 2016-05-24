@@ -37,10 +37,10 @@
             <a href="/{{ LANGUAGE_CODE }}/"><img id="logo-image" class="img-responsive" src="/static/images/logo.png" /></a>
 
             <div class="lang-chooser">
-              <div class="{% if LANGUAGE_CODE == 'ru' %}active{%endif%}">
+              <div class="{% if LANGUAGE_CODE == 'ru' %}active{% endif %}">
                 <a href="{% page_language_url "ru" %}">ru</a>
               </div>
-              <div class="{% if LANGUAGE_CODE == 'en' %}active{%endif%}">
+              <div class="{% if LANGUAGE_CODE == 'en' %}active{% endif %}">
                 <a href="{% page_language_url "en" %}">en</a>
               </div>
             </div>
@@ -48,7 +48,9 @@
             <div class="clearfix"></div>
             <div class="menu-items">
               <ul>
+                {% if request.current_page %}
                 {% page_attribute "slug" request.current_page as current_slug %}
+                {% endif %}
                 <li>
                   <div class="link-box {% if current_slug == 'announcements' %}link-box-active{% endif %}">
                     <a href="/{{ request.LANGUAGE_CODE }}/announcements">{% trans 'announcements' %}</a>
