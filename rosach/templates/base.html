@@ -36,6 +36,7 @@
           <div class="menu-wrap">
             <a href="/{{ LANGUAGE_CODE }}/"><img id="logo-image" class="img-responsive" src="/static/images/logo.png" /></a>
 
+            <!--
             <div class="lang-chooser">
               <div class="{% if LANGUAGE_CODE == 'ru' %}active{% endif %}">
                 <a href="{% page_language_url "ru" %}">ru</a>
@@ -44,6 +45,7 @@
                 <a href="{% page_language_url "en" %}">en</a>
               </div>
             </div>
+            -->
 
             <div class="clearfix"></div>
             <div class="menu-items">
@@ -62,11 +64,13 @@
                     <a href="/{{ request.LANGUAGE_CODE }}/calendar/">{% trans 'calendar' %}</a>
                   </div>
                 </li>
+                <!--
                 <li>
                   <div class="link-box {% if current_slug == 'archive' %}link-box-active{% endif %}">
                     <a href="/{{ request.LANGUAGE_CODE }}/archive">{% trans 'archive' %}</a>
                   </div>
                 </li>
+                -->
                 <li>
                   <div class="link-box {% if current_slug == 'about' %}link-box-active{% endif %}">
                     <a href="/{{ request.LANGUAGE_CODE }}/about">{% trans 'about' %}</a>
