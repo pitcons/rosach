@@ -282,8 +282,7 @@ a:hover {
   padding-left: 34px;
   line-height: 1.66em;
   font-weight: 400;
-  font-size: 18px;
-  font-family: Open Sans;
+  font-size: 18px; 
   width: 100%;
   margin-left: 1px;
 }

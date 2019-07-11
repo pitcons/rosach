@@ -1,4 +1,5 @@
 function clubTextHack() {
+    return;
   for(var i = 1;;i++) {
     var maxHeight = 0;
     $('.club-line-'+ i +' .club-text').each(function() {
@@ -17,7 +18,6 @@ function clubTextHack() {
 }
 
 function libImgHack() {
-
   var diff = $('.scool-img').height() - $('.lib-img').height();
   $('.lib-header').css('margin-top', diff);
   if (diff == 0) {
