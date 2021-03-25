@@ -20,7 +20,7 @@ html5lib
 Pillow>=2.3
 django-sekizai>=0.7
 six
-PyYAML==3.11
+PyYAML==5.4
 django-bower==5.0.4
 django-happenings==0.3.3
 MySQL-python==1.2.5
